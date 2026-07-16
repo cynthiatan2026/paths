@@ -1139,6 +1139,31 @@
     padding:16px 18px;
   }
 
+  /* Pathway group boxes in the options checker */
+  .pw-group{
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-top:4px solid var(--maroon-800);
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:16px;
+  }
+  .pw-group:last-child{ margin-bottom:0; }
+  .pw-group-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:12px;
+    flex-wrap:wrap;
+  }
+  .pw-group-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16.5px;
+    color:var(--maroon-800);
+  }
+
   /* UPP sub-tracks inside finale branch */
   .upp-sub{
     margin-top:12px;
@@ -1910,7 +1935,7 @@ function showMyOptions(){
   const now = PROGRAMMES.filter(pr => pNum >= pr.pFrom && pNum <= pr.pTo);
   const later = PROGRAMMES.filter(pr => pr.pFrom > pNum);
 
-  function card(pr){
+  function card(pr, inGroup){
     let cls, status;
     if(pr.gpa == null){
       cls = 'always';
@@ -1926,9 +1951,10 @@ function showMyOptions(){
     }
     const pw = PATHWAYS[pr.pathway];
     const stageLbl = pr.pFrom===pr.pTo ? 'P'+pr.pFrom : 'P'+pr.pFrom+'&ndash;P'+pr.pTo;
+    const pathwayLine = inGroup ? stageLbl : `${pw.roman}. ${pw.title} &middot; ${stageLbl}`;
     return `<div class="opt-card ${cls}">
       <div class="opt-main">
-        <div class="opt-pathway">${pw.roman}. ${pw.title} &middot; ${stageLbl}</div>
+        <div class="opt-pathway">${pathwayLine}</div>
         <h4 class="opt-name">${pr.name}</h4>
         <p class="opt-desc">${pr.desc}</p>
         <button class="opt-view-link" onclick="render(${pr.pathway}, {stageP:${pNum}})">View in pathway &rarr;</button>
@@ -1940,9 +1966,26 @@ function showMyOptions(){
   const nowHtml = now.length
     ? `<div class="opt-list">${now.map(card).join('')}</div>`
     : `<div class="opt-empty">No programmes start at P${pNum} — but check what's coming up below.</div>`;
-  const laterHtml = later.length
-    ? `<div class="opt-list">${later.map(card).join('')}</div>`
-    : `<div class="opt-empty">Nothing further ahead — you're at the final stretch. All remaining choices are shown above.</div>`;
+  let laterHtml;
+  if(later.length){
+    const byPathway = {};
+    later.forEach(pr => {
+      (byPathway[pr.pathway] = byPathway[pr.pathway] || []).push(pr);
+    });
+    laterHtml = Object.keys(byPathway).sort((a,b)=>a-b).map(idx => {
+      const pw = PATHWAYS[idx];
+      const cards = byPathway[idx].map(pr => card(pr, true)).join('');
+      return `<div class="pw-group">
+        <div class="pw-group-head">
+          <span class="pw-group-title">${pw.roman}. ${pw.title}</span>
+          <span class="stage-card-badge">${pw.badge}</span>
+        </div>
+        <div class="opt-list">${cards}</div>
+      </div>`;
+    }).join('');
+  } else {
+    laterHtml = `<div class="opt-empty">Nothing further ahead — you're at the final stretch. All remaining choices are shown above.</div>`;
+  }
 
   document.getElementById('main').innerHTML = `
     <div class="match-ribbon">&#127919; P${pNum} &middot; cGPA ${gpa.toFixed(1)}<button onclick="paintOptionsChecker(true)">Change</button></div>
