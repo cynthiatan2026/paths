@@ -900,13 +900,16 @@
   /* ---------- MODE SELECTOR (Find My Path / Check My Stage / By Stage Timeline) ---------- */
   .mode-selector{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(4, 1fr);
     gap:14px;
     max-width:1180px;
     margin:26px auto 0;
     padding:0 40px;
   }
-  @media (max-width:800px){
+  @media (max-width:1000px){
+    .mode-selector{ grid-template-columns:repeat(2, 1fr); }
+  }
+  @media (max-width:640px){
     .mode-selector{ grid-template-columns:1fr; padding:0 20px; margin-top:20px; }
   }
   .mode-btn{
@@ -951,6 +954,16 @@
   .mode-btn.active .mode-sub{ color:#E8C9CC; }
 
   /* ---------- PILOT BADGE / NOTICE / FOOTER ---------- */
+  .go-beyond{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:10px;
+    animation:fadeUp .5s ease backwards;
+  }
   .pilot-badge{
     display:inline-block;
     font-family:'IBM Plex Mono', monospace;
@@ -997,6 +1010,14 @@
     transition:background .15s ease;
   }
   .notice-btn:hover{ background:var(--maroon-950); }
+  .footer-gobeyond{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--maroon-800);
+    letter-spacing:.01em;
+  }
+  .footer-brand{ font-size:13px; }
   .footer-disclaimer{
     margin-top:8px;
     font-size:11px;
@@ -1004,6 +1025,117 @@
   .footer-disclaimer a{
     color:var(--maroon-800);
     font-weight:600;
+  }
+
+  /* ---------- OPTIONS CHECKER (stage + GPA) ---------- */
+  .gpa-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .gpa-input{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:17px;
+    font-weight:600;
+    color:var(--maroon-800);
+    background:var(--paper);
+    border:2px solid var(--line);
+    border-radius:10px;
+    padding:10px 14px;
+    width:110px;
+    text-align:center;
+    transition:border-color .15s ease;
+  }
+  .gpa-input:focus{ outline:none; border-color:var(--gold); }
+  .gpa-hint{ font-size:12px; color:var(--stone); }
+  .options-go-btn{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:#fff;
+    background:var(--maroon-800);
+    border:none;
+    padding:12px 26px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .options-go-btn:hover{ background:var(--maroon-950); }
+  .options-go-btn:disabled{ opacity:.45; cursor:not-allowed; }
+
+  .opt-group{ margin-bottom:30px; animation:fadeUp .45s ease backwards; }
+  .opt-group:nth-of-type(2){ animation-delay:.12s; }
+  .opt-group-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    color:var(--maroon-800);
+    margin:0 0 4px;
+  }
+  .opt-group-sub{ font-size:12.5px; color:var(--stone); margin:0 0 14px; }
+  .opt-list{ display:flex; flex-direction:column; gap:12px; }
+  .opt-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--pass);
+    border-radius:10px;
+    padding:14px 18px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .opt-card.blocked{ border-left-color:#B91C1C; }
+  .opt-card.open{ border-left-color:var(--pass); }
+  .opt-card.always{ border-left-color:var(--gold); }
+  .opt-main{ flex:1; min-width:220px; }
+  .opt-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15.5px;
+    color:var(--ink);
+    margin:0 0 2px;
+  }
+  .opt-pathway{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:4px;
+  }
+  .opt-desc{ font-size:12.8px; color:var(--stone); line-height:1.5; margin:0; }
+  .opt-status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:5px 12px;
+    border-radius:100px;
+    white-space:nowrap;
+    align-self:center;
+  }
+  .opt-status.ok{ background:#DCF2E3; color:#166534; border:1px solid #BBDCC5; }
+  .opt-status.no{ background:#FDE8E8; color:#991B1B; border:1px solid #F5C6C6; }
+  .opt-status.info{ background:var(--paper); color:var(--slate); border:1px solid var(--line); }
+  .opt-view-link{
+    font-size:12px;
+    font-weight:600;
+    color:var(--maroon-800);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    text-decoration:underline;
+    margin-top:6px;
+  }
+  .opt-empty{
+    font-size:13.5px;
+    color:var(--stone);
+    background:var(--cream);
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:16px 18px;
   }
 
   /* ============ ANIMATIONS ============ */
@@ -1144,7 +1276,7 @@
 
   <header>
     <div class="pilot-badge">Pilot Version for Staff and Student Review</div>
-    <div class="eyebrow">NYP School of Engineering</div>
+    <div class="go-beyond">GO BEYOND</div>
     <h1>Enhanced Study Pathways<br><em>Choose Your Journey to Success</em></h1>
     <p class="sub">Four ways to shape your polytechnic journey, from industry-ready graduation to global exposure, university preparation, or building your own venture.</p>
     <div class="cocert"><span class="dot"></span>All pathways include Industry Co-Certifications for a competitive edge</div>
@@ -1168,7 +1300,7 @@
   </div>
 
   <footer>
-    <div>SEG — NYP · Enhanced Study Pathways</div>
+    <div class="footer-brand"><span class="footer-gobeyond">Go Beyond</span> · Enhanced Study Pathways</div>
     <div class="footer-disclaimer">Supplementary pathway clarity resource. Not an official Nanyang Polytechnic website. <a href="about.html">About and Disclaimer</a></div>
   </footer>
 </div>
@@ -1282,6 +1414,8 @@ function renderQuiz(){
   if(sb) sb.classList.remove('active');
   const tb = document.getElementById('timelineNavBtn');
   if(tb) tb.classList.remove('active');
+  const ob = document.getElementById('optionsNavBtn');
+  if(ob) ob.classList.remove('active');
 }
 
 function metaChips(meta){
@@ -1466,6 +1600,8 @@ function render(idx, opts){
   if(sb) sb.classList.remove('active');
   const tb = document.getElementById('timelineNavBtn');
   if(tb) tb.classList.remove('active');
+  const ob = document.getElementById('optionsNavBtn');
+  if(ob) ob.classList.remove('active');
   document.querySelectorAll('.tab').forEach((t,i)=>{
     t.classList.toggle('active', i===idx);
   });
@@ -1528,6 +1664,8 @@ function paintStagePicker(){
   if(qb) qb.classList.remove('active');
   const sb = document.getElementById('stageNavBtn');
   if(sb) sb.classList.add('active');
+  const ob = document.getElementById('optionsNavBtn');
+  if(ob) ob.classList.remove('active');
 }
 
 function getStageEntries(pNum, pathwayIdx){
@@ -1625,6 +1763,148 @@ function renderStageTimeline(pNum){
   if(sb) sb.classList.remove('active');
   const tb = document.getElementById('timelineNavBtn');
   if(tb) tb.classList.add('active');
+  const ob = document.getElementById('optionsNavBtn');
+  if(ob) ob.classList.remove('active');
+}
+
+/* ---------- OPTIONS CHECKER: stage + GPA -> eligible choices ---------- */
+const PROGRAMMES = [
+  {name:'24 Weeks Internship (ITP)', pathway:0, pFrom:6, pTo:6, gpa:null,
+    desc:'Full-length industry placement for the final semester.'},
+  {name:'12 Weeks ITP + 12 Weeks FYP', pathway:0, pFrom:6, pTo:6, gpa:null,
+    desc:'Split final semester: internship plus a capstone Final Year Project.'},
+  {name:'OSEP — Overseas Student Exchange', pathway:1, pFrom:5, pTo:5, gpa:2.5,
+    desc:'Study one semester at a partner university abroad. GPA freeze.'},
+  {name:'OITP — Overseas Internship', pathway:1, pFrom:6, pTo:6, gpa:2.5,
+    desc:'Work at an overseas company for 12 or 24 weeks.'},
+  {name:'DPP — Diploma Plus Programme', pathway:2, pFrom:2, pTo:4, gpa:3.2,
+    desc:'3 higher-maths DPPs across 3 semesters for NUS/NTU module exemptions.'},
+  {name:'UPM — University Preparatory Mentorship', pathway:2, pFrom:3, pTo:6, gpa:3.2,
+    desc:'Talks and workshops preparing you for university.'},
+  {name:'UFP — University Foundation Program', pathway:2, pFrom:6, pTo:6, gpa:3.5,
+    desc:'3 of 7 NYP pre-university learning units (12 weeks), then 12 weeks ITP. GPA freeze.'},
+  {name:'UPP — University Pathway Programme', pathway:2, pFrom:6, pTo:6, gpa:3.5,
+    desc:'Up to 3 modules at NUS, NTU, SIT, SMU or SUTD (12 weeks), then 12 weeks ITP. GPA freeze.'},
+  {name:'Entrepreneurship Interest Group', pathway:3, pFrom:1, pTo:6, gpa:null,
+    desc:'Open to join at any semester of your course.'},
+  {name:'Pride Catalyst Programme', pathway:3, pFrom:1, pTo:4, gpa:null,
+    desc:'10-session curriculum with 2 SEG/NYP hackathons + 1 external. Pre-requisite for the EP Path.'},
+  {name:'EP Path + ITP (Entrepreneurship)', pathway:3, pFrom:6, pTo:6, gpa:null,
+    desc:'12 weeks EP + 12 weeks ITP, GPA freeze.', note:'Selection by interview at the end of P4.'}
+];
+
+let OPT_STATE = { p:null, gpa:null };
+
+function renderOptionsChecker(){
+  OPT_STATE = { p:null, gpa:null };
+  paintOptionsChecker();
+}
+
+function optSelectP(n){
+  OPT_STATE.p = n;
+  paintOptionsChecker(true);
+}
+
+function optGpaChanged(val){
+  const g = parseFloat(val);
+  OPT_STATE.gpa = isNaN(g) ? null : Math.min(4, Math.max(0, g));
+  const btn = document.getElementById('optGoBtn');
+  if(btn) btn.disabled = !(OPT_STATE.p && OPT_STATE.gpa!=null);
+}
+
+function paintOptionsChecker(keepGpa){
+  const prevGpa = keepGpa && OPT_STATE.gpa!=null ? OPT_STATE.gpa : '';
+  const pChips = ['P1','P2','P3','P4','P5','P6'].map((lbl,i)=>{
+    const n = i+1;
+    const sel = OPT_STATE.p===n ? 'selected' : '';
+    return `<button class="chip-btn ${sel}" onclick="optSelectP(${n})">${lbl}</button>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="quiz-hero">
+      <div class="quiz-eyebrow">What Are My Options?</div>
+      <h2 class="quiz-question">Tell us your stage and cGPA</h2>
+      <p class="quiz-help">We'll show which programmes are open to you right now, and which ones are coming up, based on their entry requirements.</p>
+    </div>
+    <div class="picker-block">
+      <div class="picker-label">Step 1 — Your current semester</div>
+      <div class="chip-row">${pChips}</div>
+    </div>
+    <div class="picker-block">
+      <div class="picker-label">Step 2 — Your current cGPA</div>
+      <div class="gpa-row">
+        <input class="gpa-input" id="optGpaInput" type="number" min="0" max="4" step="0.1" placeholder="e.g. 3.2" value="${prevGpa}" oninput="optGpaChanged(this.value)">
+        <span class="gpa-hint">Out of 4.0</span>
+        <button class="options-go-btn" id="optGoBtn" onclick="showMyOptions()" ${(OPT_STATE.p && OPT_STATE.gpa!=null)?'':'disabled'}>Show my options</button>
+      </div>
+    </div>
+  `;
+  setModeActive('optionsNavBtn');
+}
+
+function showMyOptions(){
+  const pNum = OPT_STATE.p, gpa = OPT_STATE.gpa;
+  if(!pNum || gpa==null) return;
+
+  const now = PROGRAMMES.filter(pr => pNum >= pr.pFrom && pNum <= pr.pTo);
+  const later = PROGRAMMES.filter(pr => pr.pFrom > pNum);
+
+  function card(pr){
+    let cls, status;
+    if(pr.gpa == null){
+      cls = 'always';
+      status = `<span class="opt-status info">No GPA requirement</span>`;
+      if(pr.note) status = `<span class="opt-status info">${pr.note}</span>`;
+    } else if(gpa >= pr.gpa){
+      cls = 'open';
+      status = `<span class="opt-status ok">&#10003; Eligible — needs cGPA &ge; ${pr.gpa.toFixed(1)}</span>`;
+    } else {
+      cls = 'blocked';
+      const gap = (pr.gpa - gpa).toFixed(1);
+      status = `<span class="opt-status no">Needs cGPA &ge; ${pr.gpa.toFixed(1)} (you're ${gap} below)</span>`;
+    }
+    const pw = PATHWAYS[pr.pathway];
+    const stageLbl = pr.pFrom===pr.pTo ? 'P'+pr.pFrom : 'P'+pr.pFrom+'&ndash;P'+pr.pTo;
+    return `<div class="opt-card ${cls}">
+      <div class="opt-main">
+        <div class="opt-pathway">${pw.roman}. ${pw.title} &middot; ${stageLbl}</div>
+        <h4 class="opt-name">${pr.name}</h4>
+        <p class="opt-desc">${pr.desc}</p>
+        <button class="opt-view-link" onclick="render(${pr.pathway}, {stageP:${pNum}})">View in pathway &rarr;</button>
+      </div>
+      ${status}
+    </div>`;
+  }
+
+  const nowHtml = now.length
+    ? `<div class="opt-list">${now.map(card).join('')}</div>`
+    : `<div class="opt-empty">No programmes start at P${pNum} — but check what's coming up below.</div>`;
+  const laterHtml = later.length
+    ? `<div class="opt-list">${later.map(card).join('')}</div>`
+    : `<div class="opt-empty">Nothing further ahead — you're at the final stretch. All remaining choices are shown above.</div>`;
+
+  document.getElementById('main').innerHTML = `
+    <div class="match-ribbon">&#127919; P${pNum} &middot; cGPA ${gpa.toFixed(1)}<button onclick="paintOptionsChecker(true)">Change</button></div>
+    <div class="opt-group">
+      <h3 class="opt-group-title">Open at your stage (P${pNum})</h3>
+      <p class="opt-group-sub">Programmes running at your current semester, checked against your cGPA of ${gpa.toFixed(1)}.</p>
+      ${nowHtml}
+    </div>
+    <div class="opt-group">
+      <h3 class="opt-group-title">Coming up after P${pNum}</h3>
+      <p class="opt-group-sub">Plan ahead — eligibility shown against your current cGPA, which may still change.</p>
+      ${laterHtml}
+    </div>
+  `;
+  setModeActive('optionsNavBtn');
+}
+
+function setModeActive(id){
+  ['quizNavBtn','stageNavBtn','timelineNavBtn','optionsNavBtn'].forEach(b=>{
+    const el = document.getElementById(b);
+    if(el) el.classList.toggle('active', b===id);
+  });
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
 }
 
 function buildTabs(){
@@ -1650,6 +1930,13 @@ function buildTabs(){
   timelineBtn.innerHTML = `<span class="mode-icon">🗓️</span><span class="mode-text"><div class="mode-title">By Stage Timeline</div><div class="mode-sub">See every pathway at one P-stage</div></span>`;
   timelineBtn.onclick = ()=>renderStageTimeline(1);
   modeSelector.appendChild(timelineBtn);
+
+  const optionsBtn = document.createElement('button');
+  optionsBtn.className = 'mode-btn';
+  optionsBtn.id = 'optionsNavBtn';
+  optionsBtn.innerHTML = `<span class="mode-icon">🎯</span><span class="mode-text"><div class="mode-title">What Are My Options?</div><div class="mode-sub">Enter your stage and cGPA</div></span>`;
+  optionsBtn.onclick = renderOptionsChecker;
+  modeSelector.appendChild(optionsBtn);
 
   const nav = document.getElementById('tabs');
   PATHWAYS.forEach((p,i)=>{
