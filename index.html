@@ -424,6 +424,7 @@
     padding:0 14px;
     box-shadow:0 1px 2px rgba(17,24,39,0.15);
   }
+  .lane-bar.dark{ background:linear-gradient(90deg, #5E0810, #7A0B16); }
   .lane-bar.gold{ background:linear-gradient(90deg, #B8890F, var(--gold)); }
   .lane-bar span{
     font-family:'IBM Plex Mono', monospace;
@@ -957,7 +958,7 @@
   .go-beyond{
     font-family:'IBM Plex Sans', sans-serif;
     font-weight:700;
-    font-size:15px;
+    font-size:17px;
     letter-spacing:.28em;
     text-transform:uppercase;
     color:var(--gold-soft);
@@ -1138,6 +1139,28 @@
     padding:16px 18px;
   }
 
+  /* UPP sub-tracks inside finale branch */
+  .upp-sub{
+    margin-top:12px;
+    padding:12px 14px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(234,208,142,0.3);
+    border-radius:8px;
+  }
+  .upp-sub-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--gold-soft);
+    margin-bottom:2px;
+  }
+  .upp-sub-desc{
+    font-size:12px;
+    color:#F5E1E2;
+    line-height:1.45;
+    margin:0 0 8px;
+  }
+
   /* ============ ANIMATIONS ============ */
   @keyframes fadeUp{
     from{opacity:0; transform:translateY(16px);}
@@ -1276,7 +1299,7 @@
 
   <header>
     <div class="pilot-badge">Pilot Version for Staff and Student Review</div>
-    <div class="go-beyond">GO BEYOND</div>
+    <div class="go-beyond">GO BEYOND &amp; CUSTOMISED STUDY PATH</div>
     <h1>Enhanced Study Pathways<br><em>Choose Your Journey to Success</em></h1>
     <p class="sub">Four ways to shape your polytechnic journey, from industry-ready graduation to global exposure, university preparation, or building your own venture.</p>
     <div class="cocert"><span class="dot"></span>All pathways include Industry Co-Certifications for a competitive edge</div>
@@ -1315,6 +1338,17 @@ const PATHWAYS = [
     id:'professional', roman:'1', badge:'Standard Route', type:'spine',
     title:'Professional Pathway', tagsub:'The Standard 3-Year Route',
     tagline:'Industry Readiness in 3 Years — the standard route for a strong foundation and immediate workforce entry.',
+    axisLabels:['P1','P2','P3','P4','P5','P6'],
+    lanes:[
+      {name:'Foundational Learning Units', full:'Year 1', from:0, to:1,
+        detail:'', meta:[], gold:false},
+      {name:'Specialization Competency Units', full:'Year 2', from:2, to:3,
+        detail:'', meta:[], gold:false},
+      {name:'Specialization Track', full:'Year 3', from:4, to:4,
+        detail:'', meta:[], gold:false},
+      {name:'ITP and/or FYP', full:'Year 3', from:5, to:5,
+        detail:'', meta:[], gold:false}
+    ],
     steps:[
       {stage:'Year 1 / P1–P2', title:'Foundational Learning Units', desc:'Build core disciplinary knowledge and foundational technical skills.', pFrom:1, pTo:2},
       {stage:'Year 2 / P3–P4', title:'Specialization Competency Units', desc:'Deepen technical proficiency through applied coursework.', pFrom:3, pTo:4},
@@ -1330,6 +1364,17 @@ const PATHWAYS = [
     id:'international', roman:'2', badge:'Global Track', type:'spine',
     title:'International Pathway', tagsub:'Building Global Competencies',
     tagline:'Aim for overseas exposure — expanding horizons and building global networks.',
+    axisLabels:['P1','P2','P3','P4','P5','P6'],
+    lanes:[
+      {name:'Foundational Learning Units', full:'Year 1', from:0, to:1,
+        detail:'', meta:[], gold:false},
+      {name:'Specialization Competency Units', full:'Year 2', from:2, to:3,
+        detail:'', meta:[], gold:false},
+      {name:'OSEP', full:'Overseas Student Exchange Programme', from:4, to:4,
+        detail:'', meta:[], gold:false},
+      {name:'OITP', full:'Overseas Internship Programme', from:5, to:5,
+        detail:'', meta:[], gold:false}
+    ],
     steps:[
       {stage:'Year 1 / P1–P2', title:'Foundational Learning Units', desc:'Build core disciplinary knowledge and foundational technical skills.', pFrom:1, pTo:2},
       {stage:'Year 2 / P3–P4', title:'Specialization Competency Units', desc:'Deepen technical proficiency through applied coursework.', pFrom:3, pTo:4},
@@ -1345,15 +1390,23 @@ const PATHWAYS = [
     title:'University Pathway', tagsub:'Preparation for Higher Education',
     tagline:'Fast-track your degree — specialised preparation for local universities.',
     lanes:[
-      {name:'DPP', full:'Diploma Plus Programme', from:1, to:3,
+      {name:'Academic Study', full:'Academic Study Path', from:0, to:4,
+        detail:'Standard academic study track ahead of your final-semester choice.', meta:[], gold:false},
+      {name:'UFP or UPP', full:'University Foundation / Pathway Programme', from:5, to:5,
+        detail:'Choose your path in the final semester — see the options below.', meta:[], gold:false},
+      {name:'DPP', full:'Diploma Plus Programme', from:1, to:3, dark:true, optional:true,
         detail:'3 DPPs in higher mathematics across 3 semesters, earning NUS / NTU module exemptions.', meta:['Min. cGPA 3.2']},
-      {name:'UPM', full:'University Preparatory Mentorship', from:2, to:5,
+      {name:'UPM', full:'University Preparatory Mentorship', from:2, to:5, dark:true, optional:true,
         detail:'Talks and workshops preparing students for university life and applications.', meta:['Min. cGPA 3.2']}
     ],
     finale:{
-      label:'P6 — Choose Your Path', pFrom:6, pTo:6,
+      label:'P6 — Choose Your Path - Option A or Option B', pFrom:6, pTo:6,
       a:{name:'P6 - UFP', sub:'University Foundation Program', desc:'Complete 3 of 7 NYP learning units on pre-university subjects (e.g. Physics, Economics) over 12 weeks, then 12 weeks of ITP.', meta:['Min. cGPA 3.5','GPA freeze']},
-      b:{name:'P6 - UPP', sub:'University Pathway Programme', desc:'Study for 12 weeks, taking up to 3 modules at NUS, NTU, SIT, SMU or SUTD, then 12 weeks of ITP.', meta:['Min. cGPA 3.5','GPA freeze']}
+      b:{name:'P6 - UPP', sub:'University Pathway Programme', desc:'Study for 12 weeks at a partner university - UPP Modules or UPP Project.', meta:[],
+        subs:[
+          {name:'UPP Modules', desc:'Take up to 3 modules at a local university.', meta:['NUS ≥ 3.9','SMU ≥ 3.8','NTU ≥ 3.7','SIT ≥ 3.5','GPA freeze']},
+          {name:'UPP Project', desc:'Undertake a project-based track.', meta:['SUTD ≥ 3.2']}
+        ]}
     }
   },
   {
@@ -1363,21 +1416,15 @@ const PATHWAYS = [
     lanes:[
       {name:'Academic Study', full:'Academic Study Path', from:0, to:4,
         detail:'Standard academic study track ahead of your final-semester choice.', meta:[], gold:false},
-      {name:'Interest Group', full:'Entrepreneurship Interest Group', from:0, to:5,
-        detail:'Open to join and participate across every semester of your course.', meta:[], gold:false},
-      {name:'Pride Catalyst', full:'Pride Catalyst Programme', from:0, to:3,
+      {name:'Entrepreneurship Pathway', full:'EP Pathway', from:5, to:5,
+        detail:'',
+        bullets:['EP (12 weeks) + ITP (12 weeks) or ITP (12 weeks) + EP (12 weeks)', 'GPA is freezed for EP'], meta:[], gold:false},
+      {name:'Pride Catalyst Programme', full:'Pride Catalyst Programme', from:2, to:3,
         detail:'Completion of Pride Catalyst Programme is a pre-requisite for Entrepreneurship Pathway.',
-        bullets:['A 10 session curriculum', '2 SEG/NYP hackathons + 1 external hackathon'], meta:[], gold:true},
-      {name:'EP Path + ITP  or ITP + EP Path', full:'EP Pathway', from:5, to:5,
-        detail:'12 weeks of EP + 12 weeks of ITP. Flip flop. GPA is freezed.', meta:[], gold:false}
-    ],
-    finale:{
-      label:'P6 — Entrepreneurship Path', single:true, pFrom:6, pTo:6,
-      name:'Entrepreneurship Path (EP)',
-      desc:'12 weeks of ITP plus 12 weeks of EP, with GPA freeze.',
-      meta:['GPA freeze'],
-      note:'EP selection is by interview, held at the end of P4.'
-    }
+        bullets:['A 10 session curriculum', '3 Hackathons : Minimally 1 external hackathon. Can be external, NYP or SEG hackathon.', 'Selection to be admitted into EP programme is by interview, held at end of P4.'], meta:[], gold:true},
+      {name:'Interest Group', full:'Entrepreneurship Interest Group', from:0, to:5, dark:true, optional:true,
+        detail:'Open to join and participate across every semester of your course.', meta:[], gold:false}
+    ]
   }
 ];
 
@@ -1416,6 +1463,16 @@ function renderQuiz(){
   if(tb) tb.classList.remove('active');
   const ob = document.getElementById('optionsNavBtn');
   if(ob) ob.classList.remove('active');
+}
+
+function renderSubs(subs){
+  if(!subs || !subs.length) return '';
+  return subs.map(s=>`
+    <div class="upp-sub">
+      <div class="upp-sub-name">${s.name}</div>
+      <p class="upp-sub-desc">${s.desc}</p>
+      ${metaChips(s.meta)}
+    </div>`).join('');
 }
 
 function metaChips(meta){
@@ -1500,8 +1557,8 @@ function renderLane(p, pNum){
     html += `<div class="lane ${hit?'stage-match':''}" style="--n:${n}">
       <div class="lane-name">${lane.name}<span class="full">${lane.full}</span></div>
       <div class="lane-bar-wrap">
-        <div class="lane-bar ${lane.gold?'gold':''}" style="left:${startPct}%; width:${widthPct}%;">
-          <span>${lane.from === lane.to ? p.axisLabels[lane.from] : p.axisLabels[lane.from] + '–' + p.axisLabels[lane.to]}</span>
+        <div class="lane-bar ${lane.gold?'gold':''} ${lane.dark?'dark':''}" style="left:${startPct}%; width:${widthPct}%;">
+          <span>${(lane.from === lane.to ? p.axisLabels[lane.from] : p.axisLabels[lane.from] + '–' + p.axisLabels[lane.to]) + (lane.optional ? ' (optional)' : '')}</span>
         </div>
       </div>
       <div class="lane-desc-row">
@@ -1560,6 +1617,7 @@ function renderLane(p, pNum){
             <div class="branch-sub">${p.finale.b.sub}</div>
             <p class="branch-desc">${p.finale.b.desc}</p>
             ${metaChips(p.finale.b.meta)}
+            ${renderSubs(p.finale.b.subs)}
           </div>
         </div>
       </div>`;
@@ -1573,7 +1631,8 @@ function render(idx, opts){
   opts = opts === true ? {fromQuiz:true} : (opts || {});
   const p = PATHWAYS[idx];
   const pNum = opts.stageP || null;
-  const body = p.type === 'spine' ? renderSpine(p, pNum) : renderLane(p, pNum);
+  const laneIntro = (p.type === 'spine' && p.lanes) ? renderLane(p, pNum) + '<div style="height:30px;border-bottom:1px solid var(--line);margin-bottom:30px;"></div>' : '';
+  const body = p.type === 'spine' ? laneIntro + renderSpine(p, pNum) : renderLane(p, pNum);
   const grad = p.type === 'lane' ? `<div class="grad-final"><div class="cap">🎓</div><div class="label">Graduation</div></div>` : '';
   let ribbon = '';
   if(opts.fromQuiz){
@@ -1783,12 +1842,14 @@ const PROGRAMMES = [
     desc:'Talks and workshops preparing you for university.'},
   {name:'UFP — University Foundation Program', pathway:2, pFrom:6, pTo:6, gpa:3.5,
     desc:'3 of 7 NYP pre-university learning units (12 weeks), then 12 weeks ITP. GPA freeze.'},
-  {name:'UPP — University Pathway Programme', pathway:2, pFrom:6, pTo:6, gpa:3.5,
-    desc:'Up to 3 modules at NUS, NTU, SIT, SMU or SUTD (12 weeks), then 12 weeks ITP. GPA freeze.'},
+  {name:'UPP Modules — University Pathway Programme', pathway:2, pFrom:6, pTo:6, gpa:3.5,
+    desc:'Up to 3 modules at a local university (12 weeks), then 12 weeks ITP. GPA freeze. Thresholds: SIT ≥ 3.5, NTU ≥ 3.7, SMU ≥ 3.8, NUS ≥ 3.9.'},
+  {name:'UPP Project — University Pathway Programme', pathway:2, pFrom:6, pTo:6, gpa:3.2,
+    desc:'Project-based track at SUTD (12 weeks), then 12 weeks ITP.'},
   {name:'Entrepreneurship Interest Group', pathway:3, pFrom:1, pTo:6, gpa:null,
     desc:'Open to join at any semester of your course.'},
-  {name:'Pride Catalyst Programme', pathway:3, pFrom:1, pTo:4, gpa:null,
-    desc:'10-session curriculum with 2 SEG/NYP hackathons + 1 external. Pre-requisite for the EP Path.'},
+  {name:'Pride Catalyst Programme', pathway:3, pFrom:3, pTo:4, gpa:null,
+    desc:'10-session curriculum with 3 hackathons (minimally 1 external; can be external, NYP or SEG). Pre-requisite for the EP Path.'},
   {name:'EP Path + ITP (Entrepreneurship)', pathway:3, pFrom:6, pTo:6, gpa:null,
     desc:'12 weeks EP + 12 weeks ITP, GPA freeze.', note:'Selection by interview at the end of P4.'}
 ];
