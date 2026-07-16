@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow"> <!-- Remove or change this when the website is ready for public indexing -->
+<title>Enhanced Study Pathways — SEG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon-950:#7A0B16;   /* deep shade of primary */
+    --maroon-800:#B10F1F;   /* PRIMARY */
+    --maroon-700:#C0202F;
+    --maroon-600:#CE3341;
+    --slate:#1F2937;        /* SECONDARY */
+    --gold:#D4A017;         /* ACCENT */
+    --gold-soft:#EAD08E;
+    --cream:#F3F4F6;        /* card fill */
+    --bg:#F9FAFB;           /* BACKGROUND */
+    --paper:#FFFFFF;
+    --ink:#111827;          /* TEXT */
+    --stone:#6B7280;
+    --line:#E5E7EB;
+    --pass:#15803D;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(177,15,31,0.07) 1px, transparent 0);
+    background-size: 22px 22px;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 0 64px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:linear-gradient(180deg, var(--maroon-950) 0%, var(--maroon-800) 100%);
+    color:var(--paper);
+    padding:52px 40px 40px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:6px solid var(--gold);
+  }
+  header::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 34px);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(30px, 4.4vw, 46px);
+    line-height:1.08;
+    margin:0 0 12px;
+    max-width:760px;
+    letter-spacing:-0.01em;
+  }
+  h1 em{
+    font-style:italic;
+    color:var(--gold-soft);
+    font-weight:500;
+  }
+  .sub{
+    font-size:15.5px;
+    color:#F5E1E2;
+    max-width:560px;
+    line-height:1.55;
+    margin:0 0 22px;
+  }
+  .cocert{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(234,208,142,0.4);
+    padding:9px 16px 9px 12px;
+    border-radius:100px;
+    font-size:12.5px;
+    color:var(--gold-soft);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.01em;
+  }
+  .cocert .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--gold-soft);
+    box-shadow:0 0 0 3px rgba(234,208,142,0.2);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .body-wrap{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    gap:0;
+    align-items:start;
+  }
+  @media (max-width: 800px){
+    .body-wrap{grid-template-columns:1fr;}
+  }
+
+  /* ---------- NAV / TABS ---------- */
+  nav{
+    padding:28px 14px 28px 40px;
+    position:sticky;
+    top:0;
+  }
+  @media (max-width:800px){
+    nav{position:static; padding:20px 20px 0; display:flex; overflow-x:auto; gap:8px;}
+  }
+  .navtitle{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--stone);
+    margin:0 0 14px 4px;
+  }
+  @media (max-width:800px){ .navtitle{display:none;} }
+  .tab{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    border-left:3px solid transparent;
+    padding:12px 14px;
+    margin-bottom:2px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    font-weight:500;
+    color:var(--stone);
+    cursor:pointer;
+    border-radius:0 8px 8px 0;
+    transition:all .15s ease;
+    white-space:nowrap;
+  }
+  .tab .num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--gold-soft);
+    background:var(--maroon-800);
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:all .15s ease;
+  }
+  .tab:hover .num{ background:var(--maroon-600); }
+  .tab:hover{ background:rgba(177,15,31,0.06); color:var(--maroon-800); }
+  .tab.active{
+    background:var(--paper);
+    border-left-color:var(--maroon-800);
+    color:var(--maroon-800);
+    box-shadow:0 1px 3px rgba(17,24,39,0.08);
+  }
+  .tab.active .num{ background:var(--gold); color:var(--maroon-950); }
+
+  /* ---------- MAIN ---------- */
+  main{
+    background:var(--paper);
+    margin:28px 40px 0 0;
+    border-radius:14px;
+    border:1px solid var(--line);
+    box-shadow:0 1px 2px rgba(17,24,39,0.04);
+    padding:38px 44px 46px;
+    min-height:520px;
+  }
+  @media (max-width:800px){ main{ margin:20px; padding:26px 22px; } }
+
+  .path-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:22px;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+  }
+  .path-head-left{ flex:1; min-width:260px; }
+  .path-roman{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:14px;
+    margin-bottom:6px;
+  }
+  .path-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:27px;
+    color:var(--maroon-800);
+    margin:0 0 6px;
+    line-height:1.15;
+  }
+  .path-tagline{
+    color:var(--stone);
+    font-size:14px;
+    line-height:1.5;
+    max-width:520px;
+    margin:0;
+  }
+  .path-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--slate);
+    color:var(--gold-soft);
+    padding:7px 13px;
+    border-radius:100px;
+    white-space:nowrap;
+    margin-top:4px;
+  }
+
+  /* ---------- SPINE TIMELINE ---------- */
+  .spine{ position:relative; padding-left:8px; }
+  .spine-line{
+    position:absolute;
+    left:29px; top:8px; bottom:8px;
+    width:2px;
+    background:repeating-linear-gradient(180deg, var(--line) 0, var(--line) 6px, transparent 6px, transparent 11px);
+  }
+  .step{ position:relative; padding:0 0 6px 68px; }
+  .step:last-child{ padding-bottom:0; }
+  .step-marker{
+    position:absolute; left:14px; top:2px;
+    width:32px; height:32px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--maroon-800);
+    display:flex; align-items:center; justify-content:center;
+    z-index:2;
+  }
+  .step-marker.grad{
+    background:var(--maroon-800);
+    border-color:var(--gold);
+  }
+  .step-marker.ongoing{
+    border-style:dashed;
+  }
+  .step-marker svg{ width:15px; height:15px; }
+  .step-body{ padding-bottom:36px; }
+  .step:last-child .step-body{ padding-bottom:0; }
+  .step-stage{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:4px;
+  }
+  .step-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    color:var(--ink);
+    margin:0 0 6px;
+  }
+  .step-desc{
+    font-size:13.8px;
+    color:var(--stone);
+    line-height:1.55;
+    max-width:520px;
+    margin:0;
+  }
+  .step-title.grad-title{ color:var(--maroon-800); }
+
+  /* branch fork */
+  .fork{
+    position:relative;
+    margin-top:14px;
+    padding-top:8px;
+  }
+  .fork-lines{
+    position:absolute;
+    left:-40px; top:-24px; width:56px; height:60px;
+    pointer-events:none;
+  }
+  .fork-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:6px;
+  }
+  @media (max-width:620px){ .fork-grid{ grid-template-columns:1fr; } }
+  .branch-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-top:3px solid var(--maroon-600);
+    border-radius:10px;
+    padding:16px 18px;
+    position:relative;
+  }
+  .branch-card.b{ border-top-color:var(--gold); }
+  .branch-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--maroon-600);
+    margin-bottom:6px;
+  }
+  .branch-card.b .branch-label{ color:var(--gold); }
+  .branch-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15.5px;
+    margin:0 0 3px;
+    color:var(--ink);
+  }
+  .branch-sub{
+    font-size:12px;
+    color:var(--stone);
+    font-style:italic;
+    margin:0 0 8px;
+  }
+  .branch-desc{
+    font-size:13px;
+    color:var(--ink);
+    line-height:1.5;
+    margin:0 0 10px;
+  }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:6px; }
+  .meta-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    color:var(--maroon-800);
+    padding:3px 9px;
+    border-radius:100px;
+  }
+  .meta-chip.pass{ color:var(--pass); border-color:#BBDCC5; }
+
+  /* ---------- LANE TIMELINE (Pathways 3 & 5) ---------- */
+  .axis{
+    display:grid;
+    margin-left:0;
+    position:relative;
+    margin-bottom:6px;
+  }
+  .axis-row{
+    display:grid;
+    grid-template-columns:150px repeat(var(--n), 1fr);
+    align-items:center;
+  }
+  .axis-labels{ margin-bottom:4px; }
+  .axis-labels .cell{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--stone);
+    letter-spacing:.03em;
+  }
+  .axis-labels .cell.spacer{ visibility:hidden; }
+  .axis-track{
+    height:2px;
+    background:var(--line);
+    grid-column:2 / -1;
+    position:relative;
+    margin:2px 0 20px;
+  }
+  .axis-track::before, .axis-track::after{
+    display:none;
+  }
+
+  .lane{
+    display:grid;
+    grid-template-columns:150px repeat(var(--n), 1fr);
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .lane-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--maroon-800);
+    padding-right:14px;
+  }
+  .lane-name .full{
+    display:block;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    font-style:italic;
+    font-size:11px;
+    color:var(--stone);
+    margin-top:1px;
+  }
+  .lane-bar-wrap{ grid-column:2 / -1; position:relative; height:34px; }
+  .lane-bar{
+    position:absolute;
+    top:6px; height:22px;
+    background:linear-gradient(90deg, var(--maroon-700), var(--maroon-600));
+    border-radius:100px;
+    display:flex; align-items:center;
+    padding:0 14px;
+    box-shadow:0 1px 2px rgba(17,24,39,0.15);
+  }
+  .lane-bar.gold{ background:linear-gradient(90deg, #B8890F, var(--gold)); }
+  .lane-bar span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:#FFF8EA;
+    letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  .lane-desc-row{
+    grid-column:1/-1;
+  }
+  .lane-detail{
+    font-size:12.8px;
+    color:var(--stone);
+    line-height:1.5;
+    margin:2px 0 0 0;
+    padding-left:0;
+  }
+  .lane-meta{ display:flex; gap:6px; margin-top:6px; flex-wrap:wrap; }
+  .lane-bullets{
+    margin:6px 0 0;
+    padding-left:16px;
+    font-size:12.8px;
+    color:var(--stone);
+    line-height:1.5;
+  }
+  .lane-bullets li{ margin-bottom:2px; }
+
+  .midmark{
+    display:grid;
+    grid-template-columns:150px repeat(var(--n), 1fr);
+    margin:26px 0 18px;
+  }
+  .midmark-card{
+    grid-column:2/-1;
+    background:var(--cream);
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:12px 16px;
+    max-width:340px;
+  }
+  .midmark-card .step-stage{ margin-bottom:2px; }
+  .midmark-card h4{
+    font-family:'Fraunces', serif;
+    margin:0 0 4px; font-size:15px; color:var(--ink);
+  }
+  .midmark-card p{ margin:0; font-size:12.8px; color:var(--stone); line-height:1.5;}
+
+  .lane-finale{
+    margin-top:26px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .finale-card{
+    background:linear-gradient(135deg, var(--maroon-800), var(--maroon-700));
+    border-radius:12px;
+    padding:22px 24px;
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .finale-card::after{
+    content:"";
+    position:absolute; right:-30px; top:-30px; width:120px; height:120px;
+    border-radius:50%;
+    background:rgba(234,208,142,0.12);
+  }
+  .finale-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:6px;
+  }
+  .finale-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 8px;
+  }
+  .finale-desc{ font-size:13.5px; color:#F5E1E2; line-height:1.55; margin:0 0 10px; max-width:520px;}
+  .finale-note{
+    font-size:12px;
+    color:var(--gold-soft);
+    font-style:italic;
+  }
+
+  /* branch grid reused for lane finale with 2 options */
+  .finale-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media (max-width:620px){ .finale-grid{ grid-template-columns:1fr; } }
+  .finale-branch{
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(234,208,142,0.35);
+    border-radius:10px;
+    padding:16px 18px;
+  }
+  .finale-branch .branch-label{ color:var(--gold-soft); }
+  .finale-branch .branch-name{ color:var(--paper); }
+  .finale-branch .branch-sub{ color:#E8C9CC; }
+  .finale-branch .branch-desc{ color:#F5E1E2; }
+  .finale-branch .meta-chip{ background:rgba(0,0,0,0.15); border-color:rgba(234,208,142,0.35); color:var(--gold-soft); }
+
+  /* graduation cap icon flourish */
+  .grad-final{
+    margin-top:28px;
+    text-align:center;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .grad-final .cap{ font-size:22px; }
+  .grad-final .label{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--maroon-800);
+    font-size:16px;
+    margin-top:6px;
+  }
+
+  footer{
+    text-align:center;
+    padding:26px 20px 4px;
+    color:var(--stone);
+    font-size:12px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* ---------- QUIZ NAV BUTTON ---------- */
+  .quiz-nav-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    text-align:left;
+    background:var(--maroon-800);
+    border:none;
+    padding:13px 14px;
+    margin-bottom:16px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--gold-soft);
+    cursor:pointer;
+    border-radius:9px;
+    transition:all .15s ease;
+  }
+  .quiz-nav-btn:hover{ background:var(--maroon-950); }
+  .quiz-nav-btn.active{ box-shadow:0 0 0 2px var(--gold); }
+  .quiz-nav-btn .icon{ font-size:15px; }
+  .navdivider{
+    height:1px;
+    background:var(--line);
+    margin:2px 4px 14px;
+  }
+
+  /* ---------- QUIZ VIEW ---------- */
+  .quiz-hero{ text-align:left; margin-bottom:28px; }
+  .quiz-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .quiz-question{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:25px;
+    color:var(--maroon-800);
+    margin:0 0 8px;
+    line-height:1.2;
+  }
+  .quiz-help{
+    font-size:13.5px;
+    color:var(--stone);
+    margin:0;
+    max-width:480px;
+  }
+  .quiz-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  @media (max-width:700px){ .quiz-grid{ grid-template-columns:1fr; } }
+  .quiz-card{
+    text-align:left;
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--maroon-600);
+    border-radius:10px;
+    padding:18px 20px;
+    cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    font-family:inherit;
+  }
+  .quiz-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(17,24,39,0.1);
+    border-left-color:var(--gold);
+  }
+  .quiz-card .qc-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:13px;
+    margin-bottom:6px;
+  }
+  .quiz-card .qc-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:17px;
+    color:var(--ink);
+    margin:0 0 5px;
+  }
+  .quiz-card .qc-desc{
+    font-size:13px;
+    color:var(--stone);
+    line-height:1.5;
+    margin:0;
+  }
+  .quiz-card.fifth{ grid-column:1 / -1; }
+
+  .quiz-footnote{
+    margin-top:22px;
+    font-size:12.5px;
+    color:var(--stone);
+  }
+  .quiz-footnote button{
+    background:none; border:none; color:var(--maroon-800);
+    font-weight:600; cursor:pointer; text-decoration:underline;
+    font-family:inherit; font-size:inherit; padding:0;
+  }
+
+  /* ---------- MATCH RIBBON ---------- */
+  .match-ribbon{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--gold-soft);
+    color:var(--maroon-950);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    padding:6px 13px;
+    border-radius:100px;
+    margin-bottom:14px;
+  }
+  .match-ribbon button{
+    background:none; border:none; padding:0; margin-left:4px;
+    color:var(--maroon-950); text-decoration:underline;
+    font-family:inherit; font-size:inherit; cursor:pointer; font-weight:600;
+  }
+
+  /* ---------- STAGE CHECK NAV BUTTON ---------- */
+  .stage-nav-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    text-align:left;
+    background:var(--paper);
+    border:1px solid var(--maroon-800);
+    padding:11px 14px;
+    margin-bottom:16px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--maroon-800);
+    cursor:pointer;
+    border-radius:9px;
+    transition:all .15s ease;
+  }
+  .stage-nav-btn:hover{ background:var(--cream); }
+  .stage-nav-btn.active{ box-shadow:0 0 0 2px var(--gold); background:var(--maroon-800); color:var(--gold-soft); }
+  .stage-nav-btn .icon{ font-size:14px; }
+
+  /* ---------- STAGE PICKER VIEW ---------- */
+  .picker-block{ margin-bottom:30px; }
+  .picker-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip-btn{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13.5px;
+    font-weight:500;
+    background:var(--cream);
+    border:1.5px solid var(--line);
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .chip-btn:hover{ border-color:var(--maroon-600); }
+  .chip-btn.selected{
+    background:var(--maroon-800);
+    border-color:var(--maroon-800);
+    color:var(--gold-soft);
+  }
+  .pathway-chip{
+    display:block;
+    width:100%;
+    text-align:left;
+    padding:13px 16px;
+  }
+  .pathway-chip-grid{ display:flex; flex-direction:column; gap:8px; }
+
+  /* ---------- STAGE MATCH HIGHLIGHTING ---------- */
+  .here-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    background:var(--gold);
+    color:var(--maroon-950);
+    padding:3px 10px;
+    border-radius:100px;
+    margin-bottom:8px;
+  }
+  .step.stage-match .step-marker{
+    box-shadow:0 0 0 4px rgba(212,160,23,0.35);
+  }
+  .branch-card.stage-match, .finale-branch.stage-match{
+    border-color:var(--gold);
+    background:#FCF6E1;
+    box-shadow:0 0 0 3px rgba(212,160,23,0.25);
+  }
+  .lane.stage-match .lane-bar{
+    box-shadow:0 0 0 3px rgba(212,160,23,0.45);
+  }
+  .lane.stage-match .lane-name{ color:var(--gold); }
+  .finale-card.stage-match{
+    box-shadow:0 0 0 3px rgba(212,160,23,0.5);
+  }
+
+  /* ---------- STAGE TIMELINE VIEW ---------- */
+  .stage-strip{
+    display:flex;
+    gap:8px;
+    margin-bottom:28px;
+    overflow-x:auto;
+    padding-bottom:2px;
+  }
+  .stage-pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.03em;
+    background:var(--cream);
+    border:1.5px solid var(--line);
+    color:var(--maroon-800);
+    padding:11px 22px;
+    border-radius:100px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:all .12s ease;
+  }
+  .stage-pill:hover{ border-color:var(--maroon-600); }
+  .stage-pill.selected{
+    background:var(--maroon-800);
+    border-color:var(--maroon-800);
+    color:var(--gold-soft);
+  }
+  .stage-timeline-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+  }
+  .stage-timeline-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:26px;
+    color:var(--maroon-800);
+    margin:0;
+  }
+  .stage-timeline-head .stage-year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--stone);
+  }
+  .stage-cards{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .stage-card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--maroon-600);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  .stage-card.empty{
+    border-left-color:var(--line);
+    opacity:.6;
+  }
+  .stage-card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .stage-card-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:16.5px;
+    color:var(--ink);
+  }
+  .stage-card-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    background:var(--paper);
+    border:1px solid var(--line);
+    color:var(--maroon-800);
+    padding:3px 10px;
+    border-radius:100px;
+  }
+  .stage-entry{ margin-bottom:10px; }
+  .stage-entry:last-child{ margin-bottom:0; }
+  .stage-entry-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:2px;
+  }
+  .stage-entry-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:14.5px;
+    color:var(--ink);
+    margin:0 0 3px;
+  }
+  .stage-entry-desc{
+    font-size:12.8px;
+    color:var(--stone);
+    line-height:1.5;
+    margin:0 0 6px;
+  }
+  .stage-card-link{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:12px;
+    font-weight:600;
+    color:var(--maroon-800);
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    text-decoration:underline;
+  }
+
+  /* ---------- MODE SELECTOR (Find My Path / Check My Stage / By Stage Timeline) ---------- */
+  .mode-selector{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+    max-width:1180px;
+    margin:26px auto 0;
+    padding:0 40px;
+  }
+  @media (max-width:800px){
+    .mode-selector{ grid-template-columns:1fr; padding:0 20px; margin-top:20px; }
+  }
+  .mode-btn{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    cursor:pointer;
+    text-align:left;
+    transition:all .15s ease;
+    font-family:'IBM Plex Sans', sans-serif;
+  }
+  .mode-btn:hover{
+    border-color:var(--gold);
+    box-shadow:0 2px 8px rgba(17,24,39,0.06);
+  }
+  .mode-btn.active{
+    background:var(--maroon-800);
+    border-color:var(--maroon-800);
+  }
+  .mode-btn .mode-icon{
+    font-size:22px;
+    flex-shrink:0;
+  }
+  .mode-btn .mode-text{ flex:1; min-width:0; }
+  .mode-btn .mode-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--maroon-800);
+    margin-bottom:2px;
+  }
+  .mode-btn.active .mode-title{ color:var(--gold-soft); }
+  .mode-btn .mode-sub{
+    font-size:11.5px;
+    color:var(--stone);
+    line-height:1.35;
+  }
+  .mode-btn.active .mode-sub{ color:#E8C9CC; }
+
+  /* ---------- PILOT BADGE / NOTICE / FOOTER ---------- */
+  .pilot-badge{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:rgba(234,208,142,0.18);
+    border:1px solid rgba(234,208,142,0.5);
+    color:var(--gold-soft);
+    padding:5px 12px;
+    border-radius:100px;
+    margin-bottom:16px;
+  }
+  .about-link{
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    font-size:13px;
+  }
+  .site-notice{
+    max-width:1180px;
+    margin:34px auto 0;
+    padding:0 40px;
+    text-align:center;
+  }
+  @media (max-width:800px){ .site-notice{ padding:0 20px; } }
+  .site-notice p{
+    font-size:12.5px;
+    color:var(--stone);
+    line-height:1.6;
+    max-width:640px;
+    margin:0 auto 12px;
+  }
+  .notice-btn{
+    display:inline-block;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--gold-soft);
+    background:var(--maroon-800);
+    padding:9px 20px;
+    border-radius:100px;
+    text-decoration:none;
+    transition:background .15s ease;
+  }
+  .notice-btn:hover{ background:var(--maroon-950); }
+  .footer-disclaimer{
+    margin-top:8px;
+    font-size:11px;
+  }
+  .footer-disclaimer a{
+    color:var(--maroon-800);
+    font-weight:600;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(16px);}
+    to{opacity:1; transform:none;}
+  }
+  @keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+  }
+  @keyframes popIn{
+    0%{opacity:0; transform:scale(.4);}
+    70%{transform:scale(1.15);}
+    100%{opacity:1; transform:scale(1);}
+  }
+  @keyframes growBar{
+    from{transform:scaleX(0);}
+    to{transform:scaleX(1);}
+  }
+  @keyframes ringPulse{
+    0%{box-shadow:0 0 0 0 rgba(212,160,23,.45);}
+    70%{box-shadow:0 0 0 10px rgba(212,160,23,0);}
+    100%{box-shadow:0 0 0 0 rgba(212,160,23,0);}
+  }
+  @keyframes drawLine{
+    from{clip-path:inset(0 0 100% 0);}
+    to{clip-path:inset(0 0 0% 0);}
+  }
+
+  /* Header entrance (once, on load) */
+  header .eyebrow{ animation:fadeUp .5s ease backwards; }
+  header h1{ animation:fadeUp .6s .08s ease backwards; }
+  header .sub{ animation:fadeUp .6s .16s ease backwards; }
+  header .cocert{ animation:fadeUp .6s .24s ease backwards; }
+
+  /* Mode selector cards entrance (once, on load) */
+  .mode-btn{ animation:fadeUp .5s ease backwards; }
+  .mode-btn:nth-child(1){ animation-delay:.28s; }
+  .mode-btn:nth-child(2){ animation-delay:.36s; }
+  .mode-btn:nth-child(3){ animation-delay:.44s; }
+  .mode-btn:hover{ transform:translateY(-2px); }
+  .mode-btn.active{ transform:none; }
+
+  /* Sidebar tabs entrance (once, on load) */
+  .tab{ animation:fadeUp .45s ease backwards; }
+  .tab:nth-child(1){ animation-delay:.4s; }
+  .tab:nth-child(2){ animation-delay:.46s; }
+  .tab:nth-child(3){ animation-delay:.52s; }
+  .tab:nth-child(4){ animation-delay:.58s; }
+  .tab:nth-child(5){ animation-delay:.64s; }
+
+  /* Main panel content — re-fires every render since innerHTML is replaced */
+  .path-head{ animation:fadeUp .45s ease backwards; }
+  .match-ribbon{ animation:fadeUp .4s ease backwards; }
+
+  /* Spine timeline choreography */
+  .spine-line{ animation:drawLine .9s .15s ease backwards; }
+  .step{ animation:fadeUp .5s ease backwards; }
+  .step:nth-child(2){ animation-delay:.08s; }
+  .step:nth-child(3){ animation-delay:.18s; }
+  .step:nth-child(4){ animation-delay:.28s; }
+  .step:nth-child(5){ animation-delay:.38s; }
+  .step:nth-child(6){ animation-delay:.48s; }
+  .step-marker{ animation:popIn .45s ease backwards; animation-delay:inherit; }
+  .step:nth-child(2) .step-marker{ animation-delay:.16s; }
+  .step:nth-child(3) .step-marker{ animation-delay:.26s; }
+  .step:nth-child(4) .step-marker{ animation-delay:.36s; }
+  .step:nth-child(5) .step-marker{ animation-delay:.46s; }
+  .step:nth-child(6) .step-marker{ animation-delay:.56s; }
+
+  /* Branch cards pop after their step lands */
+  .branch-card{ animation:fadeUp .45s .3s ease backwards; transition:transform .15s ease, box-shadow .15s ease; }
+  .fork-grid .branch-card:nth-child(2){ animation-delay:.4s; }
+  .branch-card:hover{ transform:translateY(-3px); box-shadow:0 6px 16px rgba(17,24,39,0.12); }
+
+  /* Lane bars grow from the left */
+  .lane{ animation:fadeUp .45s ease backwards; }
+  .lane:nth-child(2){ animation-delay:.08s; }
+  .lane:nth-child(3){ animation-delay:.16s; }
+  .lane:nth-child(4){ animation-delay:.24s; }
+  .lane:nth-child(5){ animation-delay:.32s; }
+  .lane-bar{ transform-origin:left center; animation:growBar .55s .2s cubic-bezier(.22,.9,.35,1) backwards; }
+  .lane:nth-child(2) .lane-bar{ animation-delay:.28s; }
+  .lane:nth-child(3) .lane-bar{ animation-delay:.36s; }
+  .lane:nth-child(4) .lane-bar{ animation-delay:.44s; }
+  .lane:nth-child(5) .lane-bar{ animation-delay:.52s; }
+  .lane-bar span{ animation:fadeIn .3s .55s ease backwards; }
+  .axis{ animation:fadeIn .5s ease backwards; }
+
+  /* Finale + graduation */
+  .lane-finale{ animation:fadeUp .5s .45s ease backwards; }
+  .finale-branch{ transition:transform .15s ease; }
+  .finale-branch:hover{ transform:translateY(-3px); }
+  .grad-final{ animation:fadeUp .5s .6s ease backwards; }
+
+  /* You-are-here badge: pulse to draw the eye */
+  .here-badge{ animation:popIn .4s .5s ease backwards; }
+  .step.stage-match .step-marker,
+  .lane.stage-match .lane-bar{ animation-name:popIn, ringPulse; animation-duration:.45s, 1.8s; animation-delay:.2s, .8s; animation-iteration-count:1, 3; animation-fill-mode:backwards, none; }
+
+  /* Quiz + picker views */
+  .quiz-hero{ animation:fadeUp .45s ease backwards; }
+  .quiz-card{ animation:fadeUp .45s ease backwards; transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease; }
+  .quiz-grid .quiz-card:nth-child(1){ animation-delay:.08s; }
+  .quiz-grid .quiz-card:nth-child(2){ animation-delay:.14s; }
+  .quiz-grid .quiz-card:nth-child(3){ animation-delay:.2s; }
+  .quiz-grid .quiz-card:nth-child(4){ animation-delay:.26s; }
+  .picker-block{ animation:fadeUp .45s ease backwards; }
+  .picker-block:nth-of-type(2){ animation-delay:.12s; }
+  .chip-btn{ transition:all .12s ease, transform .12s ease; }
+  .chip-btn:hover{ transform:translateY(-1px); }
+  .chip-btn.selected{ animation:popIn .3s ease; }
+
+  /* Stage timeline view */
+  .stage-timeline-head{ animation:fadeUp .4s ease backwards; }
+  .stage-strip{ animation:fadeUp .45s .08s ease backwards; }
+  .stage-pill.selected{ animation:popIn .3s ease; }
+  .stage-card{ animation:fadeUp .45s ease backwards; transition:transform .15s ease, box-shadow .15s ease; }
+  .stage-cards .stage-card:nth-child(1){ animation-delay:.1s; }
+  .stage-cards .stage-card:nth-child(2){ animation-delay:.18s; }
+  .stage-cards .stage-card:nth-child(3){ animation-delay:.26s; }
+  .stage-cards .stage-card:nth-child(4){ animation-delay:.34s; }
+  .stage-card:not(.empty):hover{ transform:translateY(-2px); box-shadow:0 5px 14px rgba(17,24,39,0.09); }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.01ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:.01ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="pilot-badge">Pilot Version for Staff and Student Review</div>
+    <div class="eyebrow">NYP School of Engineering</div>
+    <h1>Enhanced Study Pathways<br><em>Choose Your Journey to Success</em></h1>
+    <p class="sub">Four ways to shape your polytechnic journey, from industry-ready graduation to global exposure, university preparation, or building your own venture.</p>
+    <div class="cocert"><span class="dot"></span>All pathways include Industry Co-Certifications for a competitive edge</div>
+  </header>
+
+  <div id="modeSelector" class="mode-selector"></div>
+
+  <div class="body-wrap">
+    <nav>
+      <div class="navtitle">Pathways</div>
+      <div id="tabs"></div>
+      <div class="navdivider" style="margin-top:14px;"></div>
+      <a class="tab about-link" href="about.html">&#9432;&nbsp; About This Resource</a>
+    </nav>
+    <main id="main"></main>
+  </div>
+
+  <div class="site-notice">
+    <p>Supplementary pathway clarity resource for staff and students. This is not an official Nanyang Polytechnic website. Please refer to the official NYP website or the relevant school&rsquo;s course management team for the most accurate and updated information.</p>
+    <a class="notice-btn" href="about.html">Read About This Resource</a>
+  </div>
+
+  <footer>
+    <div>SEG — NYP · Enhanced Study Pathways</div>
+    <div class="footer-disclaimer">Supplementary pathway clarity resource. Not an official Nanyang Polytechnic website. <a href="about.html">About and Disclaimer</a></div>
+  </footer>
+</div>
+
+<script>
+const CHECK = '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#B10F1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CAP = '<svg viewBox="0 0 24 24" fill="none"><path d="M2 8l10-4 10 4-10 4-10-4z" stroke="#D4A017" stroke-width="1.8" stroke-linejoin="round"/><path d="M6 10.5v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5" stroke="#D4A017" stroke-width="1.8" stroke-linecap="round"/></svg>';
+const DOT = '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#B10F1F"/></svg>';
+
+const PATHWAYS = [
+  {
+    id:'professional', roman:'1', badge:'Standard Route', type:'spine',
+    title:'Professional Pathway', tagsub:'The Standard 3-Year Route',
+    tagline:'Industry Readiness in 3 Years — the standard route for a strong foundation and immediate workforce entry.',
+    steps:[
+      {stage:'Year 1 / P1–P2', title:'Foundational Learning Units', desc:'Build core disciplinary knowledge and foundational technical skills.', pFrom:1, pTo:2},
+      {stage:'Year 2 / P3–P4', title:'Specialization Competency Units', desc:'Deepen technical proficiency through applied coursework.', pFrom:3, pTo:4},
+      {stage:'Year 3 / P5', title:'Specialization Track', desc:'Dive deep into the final academic semester to fully appreciate the skills taught.', pFrom:5, pTo:5},
+      {stage:'Year 3 / P6', title:'Internship and/or Final Year Project', pFrom:6, pTo:6, branch:{
+        a:{name:'24 Weeks Internship', sub:'Industrial Training Programme (ITP)', desc:'A full-length placement embedding you in an industry role for the final year.'},
+        b:{name:'12 Weeks ITP + 12 Weeks FYP', sub:'Internship + Final Year Project', desc:'A split final year combining workplace experience with a capstone project.'}
+      }},
+      {stage:'Graduation', title:'Graduation', grad:true}
+    ]
+  },
+  {
+    id:'international', roman:'2', badge:'Global Track', type:'spine',
+    title:'International Pathway', tagsub:'Building Global Competencies',
+    tagline:'Aim for overseas exposure — expanding horizons and building global networks.',
+    steps:[
+      {stage:'Year 1 / P1–P2', title:'Foundational Learning Units', desc:'Build core disciplinary knowledge and foundational technical skills.', pFrom:1, pTo:2},
+      {stage:'Year 2 / P3–P4', title:'Specialization Competency Units', desc:'Deepen technical proficiency through applied coursework.', pFrom:3, pTo:4},
+      {stage:'Year 3 / P5-P6', title:'Choose Your Path', pFrom:5, pTo:6, branch:{
+        a:{name:'P5-OSEP', sub:'Overseas Student Exchange Programme', desc:'Study one semester at a partner university abroad.', meta:['P5','Min. cGPA 2.5','GPA freeze'], pFrom:5, pTo:5},
+        b:{name:'P6-OITP', sub:'Overseas Internship Programme', desc:'Work at an overseas company for 12 or 24 weeks.', meta:['P6','Min. cGPA 2.5'], pFrom:6, pTo:6}
+      }},
+      {stage:'Graduation', title:'Graduation', grad:true}
+    ]
+  },
+  {
+    id:'university', roman:'3', badge:'Degree Prep', type:'lane', axisLabels:['P1','P2','P3','P4','P5','P6'],
+    title:'University Pathway', tagsub:'Preparation for Higher Education',
+    tagline:'Fast-track your degree — specialised preparation for local universities.',
+    lanes:[
+      {name:'DPP', full:'Diploma Plus Programme', from:1, to:3,
+        detail:'3 DPPs in higher mathematics across 3 semesters, earning NUS / NTU module exemptions.', meta:['Min. cGPA 3.2']},
+      {name:'UPM', full:'University Preparatory Mentorship', from:2, to:5,
+        detail:'Talks and workshops preparing students for university life and applications.', meta:['Min. cGPA 3.2']}
+    ],
+    finale:{
+      label:'P6 — Choose Your Path', pFrom:6, pTo:6,
+      a:{name:'P6 - UFP', sub:'University Foundation Program', desc:'Complete 3 of 7 NYP learning units on pre-university subjects (e.g. Physics, Economics) over 12 weeks, then 12 weeks of ITP.', meta:['Min. cGPA 3.5','GPA freeze']},
+      b:{name:'P6 - UPP', sub:'University Pathway Programme', desc:'Study for 12 weeks, taking up to 3 modules at NUS, NTU, SIT, SMU or SUTD, then 12 weeks of ITP.', meta:['Min. cGPA 3.5','GPA freeze']}
+    }
+  },
+  {
+    id:'entrepreneurship', roman:'4', badge:'Founder Track', type:'lane', axisLabels:['P1','P2','P3','P4','P5','P6'],
+    title:'Entrepreneurship Pathway', tagsub:'Build Your Startup',
+    tagline:'Pursue your dreams — develop an entrepreneurial mindset through innovation, business creation, and real-world problem-solving.',
+    lanes:[
+      {name:'Academic Study', full:'Academic Study Path', from:0, to:4,
+        detail:'Standard academic study track ahead of your final-semester choice.', meta:[], gold:false},
+      {name:'Interest Group', full:'Entrepreneurship Interest Group', from:0, to:5,
+        detail:'Open to join and participate across every semester of your course.', meta:[], gold:false},
+      {name:'Pride Catalyst', full:'Pride Catalyst Programme', from:0, to:3,
+        detail:'Completion of Pride Catalyst Programme is a pre-requisite for Entrepreneurship Pathway.',
+        bullets:['A 10 session curriculum', '2 SEG/NYP hackathons + 1 external hackathon'], meta:[], gold:true},
+      {name:'EP Path + ITP  or ITP + EP Path', full:'EP Pathway', from:5, to:5,
+        detail:'12 weeks of EP + 12 weeks of ITP. Flip flop. GPA is freezed.', meta:[], gold:false}
+    ],
+    finale:{
+      label:'P6 — Entrepreneurship Path', single:true, pFrom:6, pTo:6,
+      name:'Entrepreneurship Path (EP)',
+      desc:'12 weeks of ITP plus 12 weeks of EP, with GPA freeze.',
+      meta:['GPA freeze'],
+      note:'EP selection is by interview, held at the end of P4.'
+    }
+  }
+];
+
+const QUIZ_OPTIONS = [
+  { idx:0, title:'Get industry-ready, fast', desc:'I want a strong foundation and to walk straight into the workforce in 3 years.' },
+  { idx:1, title:'Gain overseas exposure', desc:'I want to study or work abroad and build a global network.' },
+  { idx:2, title:'Prepare for university', desc:'I want a head start on a degree at NUS, NTU, or another local university.' },
+  { idx:3, title:'Build my own venture', desc:'I want to develop an entrepreneurial mindset and create something of my own.' }
+];
+
+function renderQuiz(){
+  const grid = QUIZ_OPTIONS.map((o,i)=>{
+    const p = PATHWAYS[o.idx];
+    return `<button class="quiz-card ${i===4?'fifth':''}" onclick="render(${o.idx}, true)">
+      <div class="qc-num">${p.roman}. ${p.title}</div>
+      <div class="qc-title">${o.title}</div>
+      <p class="qc-desc">${o.desc}</p>
+    </button>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="quiz-hero">
+      <div class="quiz-eyebrow">Find Your Path</div>
+      <h2 class="quiz-question">What matters most to you over the next few years?</h2>
+      <p class="quiz-help">Pick the answer that fits best — you'll land straight on the pathway built for it. You can always explore the others afterwards.</p>
+    </div>
+    <div class="quiz-grid">${grid}</div>
+  `;
+
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const qb = document.getElementById('quizNavBtn');
+  if(qb) qb.classList.add('active');
+  const sb = document.getElementById('stageNavBtn');
+  if(sb) sb.classList.remove('active');
+  const tb = document.getElementById('timelineNavBtn');
+  if(tb) tb.classList.remove('active');
+}
+
+function metaChips(meta){
+  if(!meta || !meta.length) return '';
+  return '<div class="meta-row">' + meta.map(m=>{
+    const pass = /pass/i.test(m);
+    return `<span class="meta-chip ${pass?'pass':''}">${m}</span>`;
+  }).join('') + '</div>';
+}
+
+function isMatch(obj, pNum){
+  return pNum!=null && obj && obj.pFrom!=null && pNum>=obj.pFrom && pNum<=obj.pTo;
+}
+
+function renderSpine(p, pNum){
+  let html = `<div class="spine"><div class="spine-line"></div>`;
+  p.steps.forEach(s=>{
+    const markerIcon = s.grad ? CAP : (s.ongoing ? DOT : CHECK);
+    const stepHit = isMatch(s, pNum);
+    html += `<div class="step ${stepHit?'stage-match':''}">
+      <div class="step-marker ${s.grad?'grad':''} ${s.ongoing?'ongoing':''}">${markerIcon}</div>
+      <div class="step-body">
+        ${stepHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+        <div class="step-stage">${s.stage}</div>
+        <h3 class="step-title ${s.grad?'grad-title':''}">${s.title}</h3>
+        ${s.desc ? `<p class="step-desc">${s.desc}</p>` : ''}
+        ${s.branch ? renderFork(s.branch, s, pNum) : ''}
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+function renderFork(branch, step, pNum){
+  const aFrom = branch.a.pFrom!=null ? branch.a.pFrom : step.pFrom;
+  const aTo = branch.a.pTo!=null ? branch.a.pTo : step.pTo;
+  const bFrom = branch.b.pFrom!=null ? branch.b.pFrom : step.pFrom;
+  const bTo = branch.b.pTo!=null ? branch.b.pTo : step.pTo;
+  const aHit = pNum!=null && aFrom!=null && pNum>=aFrom && pNum<=aTo;
+  const bHit = pNum!=null && bFrom!=null && pNum>=bFrom && pNum<=bTo;
+  return `<div class="fork">
+    <div class="fork-grid">
+      <div class="branch-card a ${aHit?'stage-match':''}">
+        ${aHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+        <div class="branch-label">Option A</div>
+        <div class="branch-name">${branch.a.name}</div>
+        ${branch.a.sub ? `<div class="branch-sub">${branch.a.sub}</div>` : ''}
+        <p class="branch-desc">${branch.a.desc}</p>
+        ${metaChips(branch.a.meta)}
+      </div>
+      <div class="branch-card b ${bHit?'stage-match':''}">
+        ${bHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+        <div class="branch-label">Option B</div>
+        <div class="branch-name">${branch.b.name}</div>
+        ${branch.b.sub ? `<div class="branch-sub">${branch.b.sub}</div>` : ''}
+        <p class="branch-desc">${branch.b.desc}</p>
+        ${metaChips(branch.b.meta)}
+      </div>
+    </div>
+  </div>`;
+}
+
+function laneMatch(lane, pNum){
+  return pNum!=null && (pNum-1)>=lane.from && (pNum-1)<=lane.to;
+}
+
+function renderLane(p, pNum){
+  const n = p.axisLabels.length;
+  let html = `<div class="axis" style="--n:${n}">
+    <div class="axis-row axis-labels">
+      <div class="cell spacer"></div>
+      ${p.axisLabels.map(l=>`<div class="cell">${l}</div>`).join('')}
+    </div>
+    <div class="axis-track" style="--n:${n}"></div>
+  </div>`;
+
+  p.lanes.forEach(lane=>{
+    const startPct = (lane.from / n) * 100;
+    const widthPct = ((lane.to - lane.from + 1) / n) * 100;
+    const hit = laneMatch(lane, pNum);
+    html += `<div class="lane ${hit?'stage-match':''}" style="--n:${n}">
+      <div class="lane-name">${lane.name}<span class="full">${lane.full}</span></div>
+      <div class="lane-bar-wrap">
+        <div class="lane-bar ${lane.gold?'gold':''}" style="left:${startPct}%; width:${widthPct}%;">
+          <span>${lane.from === lane.to ? p.axisLabels[lane.from] : p.axisLabels[lane.from] + '–' + p.axisLabels[lane.to]}</span>
+        </div>
+      </div>
+      <div class="lane-desc-row">
+        ${hit ? `<div class="here-badge">📍 You are here</div>` : ''}
+        <p class="lane-detail">${lane.detail}</p>
+        ${lane.bullets ? `<ul class="lane-bullets">${lane.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>` : ''}
+        ${metaChips(lane.meta)}
+      </div>
+    </div>`;
+  });
+
+  if(p.midmark){
+    html += `<div class="midmark" style="--n:${n}">
+      <div class="midmark-card">
+        <div class="step-stage">${p.midmark.stage}</div>
+        <h4>${p.midmark.title}</h4>
+        <p>${p.midmark.desc}</p>
+      </div>
+    </div>`;
+  }
+
+  if(p.finale){
+    const finaleHit = isMatch(p.finale, pNum);
+    html += `<div class="lane-finale">`;
+    if(p.finale.single){
+      html += `<div class="finale-card ${finaleHit?'stage-match':''}">
+        ${finaleHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+        <div class="finale-label">${p.finale.label}</div>
+        <h3 class="finale-title">${p.finale.name}</h3>
+        <p class="finale-desc">${p.finale.desc}</p>
+        ${metaChips(p.finale.meta)}
+        ${p.finale.note ? `<div class="finale-note">${p.finale.note}</div>` : ''}
+      </div>`;
+    } else {
+      const aFrom = p.finale.a.pFrom!=null ? p.finale.a.pFrom : p.finale.pFrom;
+      const aTo = p.finale.a.pTo!=null ? p.finale.a.pTo : p.finale.pTo;
+      const bFrom = p.finale.b.pFrom!=null ? p.finale.b.pFrom : p.finale.pFrom;
+      const bTo = p.finale.b.pTo!=null ? p.finale.b.pTo : p.finale.pTo;
+      const aHit = pNum!=null && aFrom!=null && pNum>=aFrom && pNum<=aTo;
+      const bHit = pNum!=null && bFrom!=null && pNum>=bFrom && pNum<=bTo;
+      html += `<div class="finale-card ${finaleHit?'stage-match':''}">
+        <div class="finale-label">${p.finale.label}</div>
+        <div class="finale-grid">
+          <div class="finale-branch ${aHit?'stage-match':''}">
+            ${aHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+            <div class="branch-label">Option A</div>
+            <div class="branch-name">${p.finale.a.name}</div>
+            <div class="branch-sub">${p.finale.a.sub}</div>
+            <p class="branch-desc">${p.finale.a.desc}</p>
+            ${metaChips(p.finale.a.meta)}
+          </div>
+          <div class="finale-branch ${bHit?'stage-match':''}">
+            ${bHit ? `<div class="here-badge">📍 You are here</div>` : ''}
+            <div class="branch-label">Option B</div>
+            <div class="branch-name">${p.finale.b.name}</div>
+            <div class="branch-sub">${p.finale.b.sub}</div>
+            <p class="branch-desc">${p.finale.b.desc}</p>
+            ${metaChips(p.finale.b.meta)}
+          </div>
+        </div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+  return html;
+}
+
+function render(idx, opts){
+  opts = opts === true ? {fromQuiz:true} : (opts || {});
+  const p = PATHWAYS[idx];
+  const pNum = opts.stageP || null;
+  const body = p.type === 'spine' ? renderSpine(p, pNum) : renderLane(p, pNum);
+  const grad = p.type === 'lane' ? `<div class="grad-final"><div class="cap">🎓</div><div class="label">Graduation</div></div>` : '';
+  let ribbon = '';
+  if(opts.fromQuiz){
+    ribbon = `<div class="match-ribbon">★ Matched to your answer<button onclick="renderQuiz()">Retake</button></div>`;
+  } else if(pNum){
+    ribbon = `<div class="match-ribbon">📍 Showing where P${pNum} fits in this pathway<button onclick="renderStagePicker()">Change stage</button></div>`;
+  }
+  document.getElementById('main').innerHTML = `
+    ${ribbon}
+    <div class="path-head">
+      <div class="path-head-left">
+        <h2 class="path-title">${p.roman}. ${p.title}</h2>
+        <p class="path-tagline">${p.tagline}</p>
+      </div>
+      <div class="path-badge">${p.badge}</div>
+    </div>
+    ${body}
+    ${grad}
+  `;
+
+  const qb = document.getElementById('quizNavBtn');
+  if(qb) qb.classList.remove('active');
+  const sb = document.getElementById('stageNavBtn');
+  if(sb) sb.classList.remove('active');
+  const tb = document.getElementById('timelineNavBtn');
+  if(tb) tb.classList.remove('active');
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active', i===idx);
+  });
+}
+
+let STAGE_STATE = { p:null, pathwayIdx:null };
+
+function renderStagePicker(){
+  STAGE_STATE = { p:null, pathwayIdx:null };
+  paintStagePicker();
+}
+
+function selectStageP(n){
+  STAGE_STATE.p = n;
+  if(STAGE_STATE.pathwayIdx!=null){
+    render(STAGE_STATE.pathwayIdx, {stageP:STAGE_STATE.p});
+  } else {
+    paintStagePicker();
+  }
+}
+
+function selectStagePathway(i){
+  STAGE_STATE.pathwayIdx = i;
+  if(STAGE_STATE.p!=null){
+    render(STAGE_STATE.pathwayIdx, {stageP:STAGE_STATE.p});
+  } else {
+    paintStagePicker();
+  }
+}
+
+function paintStagePicker(){
+  const pChips = ['P1','P2','P3','P4','P5','P6'].map((lbl,i)=>{
+    const n = i+1;
+    const sel = STAGE_STATE.p===n ? 'selected' : '';
+    return `<button class="chip-btn ${sel}" onclick="selectStageP(${n})">${lbl}</button>`;
+  }).join('');
+
+  const pathwayChips = PATHWAYS.map((p,i)=>{
+    const sel = STAGE_STATE.pathwayIdx===i ? 'selected' : '';
+    return `<button class="chip-btn pathway-chip ${sel}" onclick="selectStagePathway(${i})">${p.roman}. ${p.title}</button>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="quiz-hero">
+      <div class="quiz-eyebrow">Check Your Stage</div>
+      <h2 class="quiz-question">Which semester are you in, and on which pathway?</h2>
+      <p class="quiz-help">Pick both, and the app will jump straight to that pathway with your current stage highlighted — e.g. P5 on the International Pathway will point you to OSEP.</p>
+    </div>
+    <div class="picker-block">
+      <div class="picker-label">Step 1 — Your current semester</div>
+      <div class="chip-row">${pChips}</div>
+    </div>
+    <div class="picker-block">
+      <div class="picker-label">Step 2 — Your pathway</div>
+      <div class="pathway-chip-grid">${pathwayChips}</div>
+    </div>
+  `;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const qb = document.getElementById('quizNavBtn');
+  if(qb) qb.classList.remove('active');
+  const sb = document.getElementById('stageNavBtn');
+  if(sb) sb.classList.add('active');
+}
+
+function getStageEntries(pNum, pathwayIdx){
+  const p = PATHWAYS[pathwayIdx];
+  const entries = [];
+
+  if(p.type === 'spine'){
+    p.steps.forEach(s=>{
+      if(isMatch(s, pNum)){
+        entries.push({label:s.stage, title:s.title, desc:s.desc || ''});
+      }
+      if(s.branch){
+        const b = s.branch;
+        const aFrom = b.a.pFrom!=null ? b.a.pFrom : s.pFrom;
+        const aTo = b.a.pTo!=null ? b.a.pTo : s.pTo;
+        const bFrom = b.b.pFrom!=null ? b.b.pFrom : s.pFrom;
+        const bTo = b.b.pTo!=null ? b.b.pTo : s.pTo;
+        if(pNum!=null && aFrom!=null && pNum>=aFrom && pNum<=aTo){
+          entries.push({label:'Option A', title:b.a.name, desc:b.a.desc});
+        }
+        if(pNum!=null && bFrom!=null && pNum>=bFrom && pNum<=bTo){
+          entries.push({label:'Option B', title:b.b.name, desc:b.b.desc});
+        }
+      }
+    });
+  } else {
+    p.lanes.forEach(lane=>{
+      if(laneMatch(lane, pNum)){
+        entries.push({label:lane.name, title:lane.full, desc:lane.detail});
+      }
+    });
+    if(p.finale && isMatch(p.finale, pNum)){
+      if(p.finale.single){
+        entries.push({label:p.finale.label, title:p.finale.name, desc:p.finale.desc});
+      } else {
+        const aFrom = p.finale.a.pFrom!=null ? p.finale.a.pFrom : p.finale.pFrom;
+        const aTo = p.finale.a.pTo!=null ? p.finale.a.pTo : p.finale.pTo;
+        const bFrom = p.finale.b.pFrom!=null ? p.finale.b.pFrom : p.finale.pFrom;
+        const bTo = p.finale.b.pTo!=null ? p.finale.b.pTo : p.finale.pTo;
+        if(pNum>=aFrom && pNum<=aTo) entries.push({label:'Option A', title:p.finale.a.name, desc:p.finale.a.desc});
+        if(pNum>=bFrom && pNum<=bTo) entries.push({label:'Option B', title:p.finale.b.name, desc:p.finale.b.desc});
+      }
+    }
+  }
+  return entries;
+}
+
+function renderStageTimeline(pNum){
+  pNum = pNum || 1;
+  const strip = [1,2,3,4,5,6].map(n=>{
+    const sel = n===pNum ? 'selected' : '';
+    return `<button class="stage-pill ${sel}" onclick="renderStageTimeline(${n})">P${n}</button>`;
+  }).join('');
+
+  const cards = PATHWAYS.map((p,i)=>{
+    const entries = getStageEntries(pNum, i);
+    if(!entries.length){
+      return `<div class="stage-card empty">
+        <div class="stage-card-head">
+          <div class="stage-card-title">${p.roman}. ${p.title}</div>
+          <div class="stage-card-badge">No activity at P${pNum}</div>
+        </div>
+        <button class="stage-card-link" onclick="render(${i})">View full pathway →</button>
+      </div>`;
+    }
+    const entryHtml = entries.map(e=>`
+      <div class="stage-entry">
+        <div class="stage-entry-label">${e.label}</div>
+        <h4 class="stage-entry-title">${e.title}</h4>
+        ${e.desc ? `<p class="stage-entry-desc">${e.desc}</p>` : ''}
+      </div>`).join('');
+    return `<div class="stage-card">
+      <div class="stage-card-head">
+        <div class="stage-card-title">${p.roman}. ${p.title}</div>
+        <div class="stage-card-badge">${p.badge}</div>
+      </div>
+      ${entryHtml}
+      <button class="stage-card-link" onclick="render(${i}, {stageP:${pNum}})">View in full pathway →</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="stage-timeline-head">
+      <h2>P${pNum} — Across All Pathways</h2>
+      <span class="stage-year">What's happening at this stage, pathway by pathway</span>
+    </div>
+    <div class="stage-strip">${strip}</div>
+    <div class="stage-cards">${cards}</div>
+  `;
+
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const qb = document.getElementById('quizNavBtn');
+  if(qb) qb.classList.remove('active');
+  const sb = document.getElementById('stageNavBtn');
+  if(sb) sb.classList.remove('active');
+  const tb = document.getElementById('timelineNavBtn');
+  if(tb) tb.classList.add('active');
+}
+
+function buildTabs(){
+  const modeSelector = document.getElementById('modeSelector');
+
+  const quizBtn = document.createElement('button');
+  quizBtn.className = 'mode-btn active';
+  quizBtn.id = 'quizNavBtn';
+  quizBtn.innerHTML = `<span class="mode-icon">🔍</span><span class="mode-text"><div class="mode-title">Find My Path</div><div class="mode-sub">Answer one question to get matched</div></span>`;
+  quizBtn.onclick = renderQuiz;
+  modeSelector.appendChild(quizBtn);
+
+  const stageBtn = document.createElement('button');
+  stageBtn.className = 'mode-btn';
+  stageBtn.id = 'stageNavBtn';
+  stageBtn.innerHTML = `<span class="mode-icon">📍</span><span class="mode-text"><div class="mode-title">Check My Stage</div><div class="mode-sub">Pick your semester and pathway</div></span>`;
+  stageBtn.onclick = renderStagePicker;
+  modeSelector.appendChild(stageBtn);
+
+  const timelineBtn = document.createElement('button');
+  timelineBtn.className = 'mode-btn';
+  timelineBtn.id = 'timelineNavBtn';
+  timelineBtn.innerHTML = `<span class="mode-icon">🗓️</span><span class="mode-text"><div class="mode-title">By Stage Timeline</div><div class="mode-sub">See every pathway at one P-stage</div></span>`;
+  timelineBtn.onclick = ()=>renderStageTimeline(1);
+  modeSelector.appendChild(timelineBtn);
+
+  const nav = document.getElementById('tabs');
+  PATHWAYS.forEach((p,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.innerHTML = `<span class="num">${p.roman}</span> ${p.title.replace(' Pathway','')}`;
+    btn.onclick = ()=>render(i);
+    nav.appendChild(btn);
+  });
+}
+
+buildTabs();
+renderQuiz();
+</script>
+</body>
+</html>
