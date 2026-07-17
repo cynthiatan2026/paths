@@ -1186,6 +1186,20 @@
     margin:0 0 8px;
   }
 
+  .explorer-link-btn{
+    display:inline-block;
+    margin-top:16px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:#fff;
+    background:var(--maroon-800);
+    padding:10px 20px;
+    border-radius:100px;
+    text-decoration:none;
+    transition:background .15s ease;
+  }
+  .explorer-link-btn:hover{ background:var(--maroon-950); }
   .exem-card{
     margin-top:16px;
     background:var(--paper);
@@ -1217,10 +1231,16 @@
   .exem-card .exem-mods li{ color:var(--stone); }
   .exem-card .exem-mods li::before{ color:var(--gold); }
   .exem-card .exem-mini{
-    background:var(--cream);
+    background:var(--paper);
     border-color:var(--line);
     color:var(--slate);
   }
+  .exem-card .exem-mini.highlighted{
+    background:var(--maroon-800);
+    border-color:var(--maroon-800);
+    color:#fff;
+  }
+  .exem-card .exem-mini{ font-size:9.5px; padding:2px 7px; }
   .exem-card .exem-none{ color:var(--stone); }
 
   /* University module exemptions block */
@@ -1254,6 +1274,59 @@
   }
   .exem-chip:hover{ border-color:var(--gold-soft); background:rgba(234,208,142,0.12); }
   .exem-chip.selected{ background:var(--gold); border-color:var(--gold); color:var(--maroon-950); }
+  .exem-track{
+    background:var(--cream);
+    border:1px solid var(--line);
+    border-left:4px solid var(--maroon-800);
+    border-radius:10px;
+    padding:14px 16px;
+    margin-bottom:12px;
+  }
+  .exem-track:last-child{ margin-bottom:0; }
+  .exem-track-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .exem-track-uni{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:2px;
+  }
+  .exem-track-name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--ink);
+  }
+  .exem-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    color:var(--maroon-800);
+    padding:4px 11px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+  .exem-progs{ margin:0 0 10px; }
+  .exem-track-desc{
+    font-size:12.5px;
+    color:var(--stone);
+    line-height:1.55;
+    margin:0 0 10px;
+  }
+  .exem-mini.highlighted{
+    background:var(--maroon-800);
+    border-color:var(--maroon-800);
+    color:#fff;
+  }
   .exem-uni{ margin-bottom:12px; }
   .exem-uni:last-child{ margin-bottom:0; }
   .exem-uni-name{
@@ -1462,6 +1535,7 @@
       <div class="navtitle">Pathways</div>
       <div id="tabs"></div>
       <div class="navdivider" style="margin-top:14px;"></div>
+      <a class="tab about-link" href="uni-pathway-explorer.html">&#127891;&nbsp; University Pathway Explorer</a>
       <a class="tab about-link" href="about.html">&#9432;&nbsp; About This Resource</a>
     </nav>
     <main id="main"></main>
@@ -1776,6 +1850,7 @@ function renderLane(p, pNum){
       html += `<div class="exem-card">
         <div class="finale-label">P6-UPP (University Exemption)</div>
         ${renderExemptions()}
+        <a class="explorer-link-btn" href="uni-pathway-explorer.html">Open the full University Pathway Explorer &rarr;</a>
       </div>`;
     }
     html += `</div>`;
@@ -2142,23 +2217,55 @@ function setModeActive(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
 }
 
-/* ---------- UNIVERSITY MODULE EXEMPTIONS (from UniExemption.xlsx) ---------- */
-const EXEMPTIONS = [
-  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS210 Business Process Analysis & Solutioning', dips:['C62','C26','C31','C87']},
-  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS115 Algorithms and Programming', dips:['C62','C26','C31']},
-  {uni:'SMU', prog:'BSc (Software Engineering)', module:'IS115 Algorithms and Programming', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
-  {uni:'SMU', prog:'BSc (Software Engineering)', module:'SE101 Operating Systems & Networking', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
-  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS102 Programming Fundamentals II', dips:['C87','C75','C89','C71','C41']},
-  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS104 Mathematical Foundations of Computing', dips:['C87','C75','C89','C71','C41']},
-  {uni:'NUS', prog:'Info Systems', module:'NUS IS 1', dips:['C62','C26','C31','C87']},
-  {uni:'NUS', prog:'Info Systems', module:'NUS IS 2', dips:['C62','C26','C31']},
-  {uni:'NUS', prog:'Software Engineering', module:'NUS SE 1', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
-  {uni:'NUS', prog:'Software Engineering', module:'NUS SE2', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
-  {uni:'NUS', prog:'Computer Science', module:'NUS CS 1', dips:['C87','C75','C89','C71','C41']},
-  {uni:'NUS', prog:'Computer Science', module:'NUS CS2', dips:['C87','C75','C89','C71','C41']}
+/* ---------- UNIVERSITY EXEMPTIONS (track-level, from NYP University Pathways) ---------- */
+const EXEM_DIPLOMAS = [
+  {code:'C62', name:'Advanced & Digital Manufacturing'},
+  {code:'C26', name:'Aerospace Engineering'},
+  {code:'C31', name:'AI & Data Engineering'},
+  {code:'C87', name:'AI Robotics'},
+  {code:'C71', name:'Biomedical Engineering'},
+  {code:'C75', name:'Cloud Engineering'},
+  {code:'C89', name:'Electronic & Computer Engineering'},
+  {code:'C41', name:'Sustainability in Engineering with Business'},
+  {code:'C24', name:'Common Business & Technology Programme'},
+  {code:'C42', name:'Common Engineering Programme'}
 ];
-const EXEM_DIPS = ['C62','C26','C31','C87','C75','C89','C71','C41'];
-const EXEM_UNIS = [...new Set(EXEMPTIONS.map(e=>e.uni))];
+const EXEM_DIP_MAP = {};
+EXEM_DIPLOMAS.forEach(d => EXEM_DIP_MAP[d.code] = d.name);
+
+const EXEM_TRACKS = [
+  {id:'NUS-CDE', uni:'NUS', uniFullName:'National University of Singapore',
+    trackName:'College of Design & Engineering', moduleCount:3, type:'modules',
+    desc:'Eligible final-year students take three NUS CDE modules in place of three NYP learning units.',
+    diplomas:['C26','C87','C71','C89','C41']},
+  {id:'NTU-EEE', uni:'NTU', uniFullName:'Nanyang Technological University',
+    trackName:'School of Electrical & Electronic Engineering (EEE)', moduleCount:3, type:'modules',
+    desc:'Eligible final-year students take up to three NTU EEE modules in place of NYP learning units.',
+    diplomas:['C26','C31','C87','C71','C75','C89','C41']},
+  {id:'NTU-MAE', uni:'NTU', uniFullName:'Nanyang Technological University',
+    trackName:'School of Mechanical & Aerospace Engineering (MAE)', moduleCount:3, type:'modules',
+    desc:'Eligible final-year students take up to three NTU MAE modules in place of NYP learning units.',
+    diplomas:['C62','C26','C31','C87']},
+  {id:'SMU-SCIS', uni:'SMU', uniFullName:'Singapore Management University',
+    trackName:'School of Computing & Information Systems (SCIS)', moduleCount:2, type:'modules',
+    desc:'Eligible final-year students take two SMU SCIS modules in place of NYP learning units.',
+    diplomas:['C31','C75','C89'],
+    programmes:[
+      {prog:'BSc (Information Systems)', modules:['IS210 Business Process Analysis & Solutioning','IS115 Algorithms and Programming']},
+      {prog:'BSc (Software Engineering)', modules:['IS115 Algorithms and Programming','SE101 Operating Systems & Networking']},
+      {prog:'BSc (Computer Science)', modules:['CS102 Programming Fundamentals II','CS104 Mathematical Foundations of Computing']}
+    ]},
+  {id:'SIT-EICT', uni:'SIT', uniFullName:'Singapore Institute of Technology',
+    trackName:'Engineering & Infocomm Technology degree programmes', moduleCount:2, type:'modules',
+    desc:'Eligible final-year students take two SIT modules in place of NYP learning units.',
+    diplomas:['C62','C26','C31','C87','C71','C75','C89','C41']},
+  {id:'SUTD-IMM', uni:'SUTD', uniFullName:'Singapore University of Technology and Design',
+    trackName:'Immersion Project Track', moduleCount:0, type:'project',
+    desc:'Selected students complete a 12-week final-year project under co-mentorship of SUTD professors and NYP lecturers — no modules taken, project-based instead.',
+    diplomas:['C62','C26','C31','C87','C71','C75','C89','C41']}
+];
+const EXEM_UNI_ORDER = ['NUS','NTU','SMU','SIT','SUTD'];
+
 let EXEM_MODE = 'diploma';   // 'diploma' | 'uni'
 let EXEM_SELECTED = null;
 
@@ -2180,52 +2287,69 @@ function repaintExem(){
 }
 
 function exemChipsHtml(){
-  const values = EXEM_MODE === 'diploma' ? EXEM_DIPS : EXEM_UNIS;
-  return values.map(v=>{
-    const sel = EXEM_SELECTED === v ? 'selected' : '';
-    return `<button class="exem-chip ${sel}" onclick="selectExemFilter('${v}')">${v}</button>`;
+  if(EXEM_MODE === 'diploma'){
+    return EXEM_DIPLOMAS.map(d=>{
+      const sel = EXEM_SELECTED === d.code ? 'selected' : '';
+      return `<button class="exem-chip ${sel}" title="${d.name}" onclick="selectExemFilter('${d.code}')">${d.code}</button>`;
+    }).join('');
+  }
+  return EXEM_UNI_ORDER.map(u=>{
+    const sel = EXEM_SELECTED === u ? 'selected' : '';
+    return `<button class="exem-chip ${sel}" onclick="selectExemFilter('${u}')">${u}</button>`;
   }).join('');
 }
 
-function exemListHtml(){
-  let rows = EXEMPTIONS;
-  if(EXEM_SELECTED){
-    rows = EXEM_MODE === 'diploma'
-      ? EXEMPTIONS.filter(e => e.dips.indexOf(EXEM_SELECTED) !== -1)
-      : EXEMPTIONS.filter(e => e.uni === EXEM_SELECTED);
-  }
-  if(!rows.length){
-    return `<div class="exem-none">No exemption modules listed for ${EXEM_SELECTED} yet.</div>`;
-  }
-  // group: uni -> prog -> modules
-  const tree = {};
-  rows.forEach(e=>{
-    tree[e.uni] = tree[e.uni] || {};
-    (tree[e.uni][e.prog] = tree[e.uni][e.prog] || []).push(e);
-  });
-  // when filtering by diploma, hide the per-module diploma chips (redundant);
-  // when browsing by uni (or unfiltered), show them so students see who qualifies
-  const showChips = !(EXEM_MODE === 'diploma' && EXEM_SELECTED);
-  return Object.keys(tree).map(uni=>{
-    const progs = Object.keys(tree[uni]).map(prog=>{
-      const mods = tree[uni][prog].map(e=>{
-        const chips = showChips
-          ? `<span class="exem-dip-chips">${e.dips.map(d=>`<span class="exem-mini">${d}</span>`).join('')}</span>`
-          : '';
-        return `<li>${e.module}${chips}</li>`;
-      }).join('');
-      return `<div class="exem-prog"><div class="exem-prog-name">${prog}</div><ul class="exem-mods">${mods}</ul></div>`;
-    }).join('');
-    return `<div class="exem-uni"><div class="exem-uni-name">${uni}</div>${progs}</div>`;
+function trackBadgeLabel(t){
+  return t.type === 'project' ? 'Immersion project' : (t.moduleCount + ' module' + (t.moduleCount === 1 ? '' : 's'));
+}
+
+function exemTrackCard(t, highlightCode){
+  const chips = t.diplomas.map(code=>{
+    const hl = code === highlightCode ? ' highlighted' : '';
+    return `<span class="exem-mini${hl}" title="${EXEM_DIP_MAP[code] || ''}">${code}</span>`;
   }).join('');
+  return `<div class="exem-track">
+    <div class="exem-track-top">
+      <div>
+        <div class="exem-track-uni">${t.uni} &middot; ${t.uniFullName}</div>
+        <div class="exem-track-name">${t.trackName}</div>
+      </div>
+      <span class="exem-badge">${trackBadgeLabel(t)}</span>
+    </div>
+    <p class="exem-track-desc">${t.desc}</p>
+    ${t.programmes ? `<div class="exem-progs">${t.programmes.map(pg=>`
+      <div class="exem-prog"><div class="exem-prog-name">${pg.prog}</div>
+      <ul class="exem-mods">${pg.modules.map(m=>`<li>${m}</li>`).join('')}</ul></div>`).join('')}</div>` : ''}
+    <div class="exem-dip-chips">${chips}</div>
+  </div>`;
+}
+
+function exemListHtml(){
+  let tracks;
+  if(EXEM_SELECTED){
+    tracks = EXEM_MODE === 'diploma'
+      ? EXEM_TRACKS.filter(t => t.diplomas.indexOf(EXEM_SELECTED) !== -1)
+      : EXEM_TRACKS.filter(t => t.uni === EXEM_SELECTED);
+  } else {
+    tracks = EXEM_TRACKS;
+  }
+  if(!tracks.length){
+    const lbl = EXEM_MODE === 'diploma' && EXEM_DIP_MAP[EXEM_SELECTED]
+      ? `${EXEM_SELECTED} (${EXEM_DIP_MAP[EXEM_SELECTED]})` : EXEM_SELECTED;
+    return `<div class="exem-none">No exemption tracks listed for ${lbl} yet.</div>`;
+  }
+  // preserve university display order
+  const sorted = EXEM_UNI_ORDER.flatMap(u => tracks.filter(t => t.uni === u));
+  const hl = EXEM_MODE === 'diploma' ? EXEM_SELECTED : null;
+  return sorted.map(t => exemTrackCard(t, hl)).join('');
 }
 
 function exemInnerHtml(){
   const dipSel = EXEM_MODE==='diploma' ? 'selected' : '';
   const uniSel = EXEM_MODE==='uni' ? 'selected' : '';
   const hint = EXEM_MODE==='diploma'
-    ? 'Select your diploma to see which modules you may be exempted from. Tap again to show all.'
-    : 'Select a university to see its exemptible modules. Tap again to show all.';
+    ? 'Select your diploma to see which university tracks you may be exempted through. Tap again to show all.'
+    : 'Select a university to see its exemption tracks. Tap again to show all.';
   return `
     <div class="exem-mode-row">
       <button class="exem-mode-btn ${dipSel}" onclick="setExemMode('diploma')">By Diploma</button>
@@ -2240,7 +2364,6 @@ function renderExemptions(){
   EXEM_MODE = 'diploma';
   EXEM_SELECTED = null;
   return `<div class="upp-sub exem-sub">
-    <div class="upp-sub-name">University Module Exemptions</div>
     <div id="exemBox">${exemInnerHtml()}</div>
   </div>`;
 }
