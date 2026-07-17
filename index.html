@@ -2144,20 +2144,20 @@ function setModeActive(id){
 
 /* ---------- UNIVERSITY MODULE EXEMPTIONS (from UniExemption.xlsx) ---------- */
 const EXEMPTIONS = [
-  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS210 Business Process Analysis & Solutioning', dips:['ADM','AE','ADE','AIR']},
-  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS115 Algorithms and Programming', dips:['ADM','AE','ADE']},
-  {uni:'SMU', prog:'BSc (Software Engineering)', module:'IS115 Algorithms and Programming', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
-  {uni:'SMU', prog:'BSc (Software Engineering)', module:'SE101 Operating Systems & Networking', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
-  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS102 Programming Fundamentals II', dips:['AIR','CE','ECE','BME','SEB']},
-  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS104 Mathematical Foundations of Computing', dips:['AIR','CE','ECE','BME','SEB']},
-  {uni:'NUS', prog:'Info Systems', module:'NUS IS 1', dips:['ADM','AE','ADE','AIR']},
-  {uni:'NUS', prog:'Info Systems', module:'NUS IS 2', dips:['ADM','AE','ADE']},
-  {uni:'NUS', prog:'Software Engineering', module:'NUS SE 1', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
-  {uni:'NUS', prog:'Software Engineering', module:'NUS SE2', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
-  {uni:'NUS', prog:'Computer Science', module:'NUS CS 1', dips:['AIR','CE','ECE','BME','SEB']},
-  {uni:'NUS', prog:'Computer Science', module:'NUS CS2', dips:['AIR','CE','ECE','BME','SEB']}
+  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS210 Business Process Analysis & Solutioning', dips:['C62','C26','C31','C87']},
+  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS115 Algorithms and Programming', dips:['C62','C26','C31']},
+  {uni:'SMU', prog:'BSc (Software Engineering)', module:'IS115 Algorithms and Programming', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
+  {uni:'SMU', prog:'BSc (Software Engineering)', module:'SE101 Operating Systems & Networking', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
+  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS102 Programming Fundamentals II', dips:['C87','C75','C89','C71','C41']},
+  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS104 Mathematical Foundations of Computing', dips:['C87','C75','C89','C71','C41']},
+  {uni:'NUS', prog:'Info Systems', module:'NUS IS 1', dips:['C62','C26','C31','C87']},
+  {uni:'NUS', prog:'Info Systems', module:'NUS IS 2', dips:['C62','C26','C31']},
+  {uni:'NUS', prog:'Software Engineering', module:'NUS SE 1', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
+  {uni:'NUS', prog:'Software Engineering', module:'NUS SE2', dips:['C62','C26','C31','C87','C75','C89','C71','C41']},
+  {uni:'NUS', prog:'Computer Science', module:'NUS CS 1', dips:['C87','C75','C89','C71','C41']},
+  {uni:'NUS', prog:'Computer Science', module:'NUS CS2', dips:['C87','C75','C89','C71','C41']}
 ];
-const EXEM_DIPS = ['ADM','AE','ADE','AIR','CE','ECE','BME','SEB'];
+const EXEM_DIPS = ['C62','C26','C31','C87','C75','C89','C71','C41'];
 const EXEM_UNIS = [...new Set(EXEMPTIONS.map(e=>e.uni))];
 let EXEM_MODE = 'diploma';   // 'diploma' | 'uni'
 let EXEM_SELECTED = null;
