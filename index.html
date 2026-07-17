@@ -1186,8 +1186,42 @@
     margin:0 0 8px;
   }
 
-  .exem-card{ margin-top:16px; }
+  .exem-card{
+    margin-top:16px;
+    background:var(--paper);
+    border:1.5px solid var(--line);
+    border-top:4px solid var(--maroon-800);
+    border-radius:12px;
+    padding:22px 24px;
+  }
+  .exem-card::after{ display:none; }
+  .exem-card .finale-label{ color:var(--maroon-800); }
   .exem-card .upp-sub{ margin-top:0; border:none; background:transparent; padding:0; }
+  .exem-card .upp-sub-name{ color:var(--maroon-800); }
+  .exem-card .upp-sub-desc{ color:var(--stone); }
+  .exem-card .exem-mode-btn{
+    border-color:var(--line);
+    color:var(--slate);
+  }
+  .exem-card .exem-mode-btn:hover{ border-color:var(--maroon-800); }
+  .exem-card .exem-mode-btn.selected{ background:var(--maroon-800); color:#fff; border-color:var(--maroon-800); }
+  .exem-card .exem-chip{
+    border-color:var(--line);
+    color:var(--slate);
+    background:var(--cream);
+  }
+  .exem-card .exem-chip:hover{ border-color:var(--gold); background:#FCF6E1; }
+  .exem-card .exem-chip.selected{ background:var(--maroon-800); border-color:var(--maroon-800); color:#fff; }
+  .exem-card .exem-uni-name{ color:var(--maroon-800); border-bottom-color:var(--line); }
+  .exem-card .exem-prog-name{ color:var(--ink); }
+  .exem-card .exem-mods li{ color:var(--stone); }
+  .exem-card .exem-mods li::before{ color:var(--gold); }
+  .exem-card .exem-mini{
+    background:var(--cream);
+    border-color:var(--line);
+    color:var(--slate);
+  }
+  .exem-card .exem-none{ color:var(--stone); }
 
   /* University module exemptions block */
   .exem-mode-row{ display:flex; gap:8px; margin-bottom:10px; }
@@ -1739,7 +1773,7 @@ function renderLane(p, pNum){
       </div>`;
     }
     if(p.finale.b && p.finale.b.exemptions){
-      html += `<div class="finale-card exem-card">
+      html += `<div class="exem-card">
         <div class="finale-label">P6-UPP (University Exemption)</div>
         ${renderExemptions()}
       </div>`;
