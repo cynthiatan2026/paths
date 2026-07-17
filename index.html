@@ -1186,6 +1186,97 @@
     margin:0 0 8px;
   }
 
+  .exem-card{ margin-top:16px; }
+  .exem-card .upp-sub{ margin-top:0; border:none; background:transparent; padding:0; }
+
+  /* University module exemptions block */
+  .exem-mode-row{ display:flex; gap:8px; margin-bottom:10px; }
+  .exem-mode-btn{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:11.5px;
+    font-weight:600;
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.35);
+    color:#F5E1E2;
+    padding:6px 14px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .exem-mode-btn:hover{ border-color:#fff; }
+  .exem-mode-btn.selected{ background:#fff; color:var(--maroon-800); border-color:#fff; }
+  .exem-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+  .exem-chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    font-weight:600;
+    background:transparent;
+    border:1px solid rgba(234,208,142,0.5);
+    color:var(--gold-soft);
+    padding:4px 10px;
+    border-radius:100px;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .exem-chip:hover{ border-color:var(--gold-soft); background:rgba(234,208,142,0.12); }
+  .exem-chip.selected{ background:var(--gold); border-color:var(--gold); color:var(--maroon-950); }
+  .exem-uni{ margin-bottom:12px; }
+  .exem-uni:last-child{ margin-bottom:0; }
+  .exem-uni-name{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    border-bottom:1px solid rgba(234,208,142,0.3);
+    padding-bottom:3px;
+    margin-bottom:8px;
+  }
+  .exem-prog{ margin-bottom:8px; }
+  .exem-prog-name{
+    font-size:12px;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:3px;
+  }
+  .exem-mods{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .exem-mods li{
+    font-size:11.5px;
+    color:#F5E1E2;
+    line-height:1.5;
+    padding:3px 0 3px 14px;
+    position:relative;
+  }
+  .exem-mods li::before{
+    content:"\2713";
+    position:absolute;
+    left:0;
+    color:var(--gold-soft);
+    font-size:10px;
+  }
+  .exem-dip-chips{ margin-left:6px; }
+  .exem-mini{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:8.5px;
+    background:rgba(234,208,142,0.15);
+    border:1px solid rgba(234,208,142,0.3);
+    color:var(--gold-soft);
+    padding:1px 5px;
+    border-radius:100px;
+    margin:0 2px 2px 0;
+  }
+  .exem-none{
+    font-size:12px;
+    color:#F5E1E2;
+    font-style:italic;
+    padding:8px 0;
+  }
+
   /* ============ ANIMATIONS ============ */
   @keyframes fadeUp{
     from{opacity:0; transform:translateY(16px);}
@@ -1431,7 +1522,7 @@ const PATHWAYS = [
         subs:[
           {name:'UPP Modules', desc:'Take up to 3 modules at a local university.', meta:['NUS ≥ 3.9','SMU ≥ 3.8','NTU ≥ 3.7','SIT ≥ 3.5','GPA freeze']},
           {name:'UPP Project', desc:'Undertake a project-based track.', meta:['SUTD ≥ 3.2']}
-        ]}
+        ], exemptions:true}
     }
   },
   {
@@ -1645,6 +1736,12 @@ function renderLane(p, pNum){
             ${renderSubs(p.finale.b.subs)}
           </div>
         </div>
+      </div>`;
+    }
+    if(p.finale.b && p.finale.b.exemptions){
+      html += `<div class="finale-card exem-card">
+        <div class="finale-label">P6-UPP (University Exemption)</div>
+        ${renderExemptions()}
       </div>`;
     }
     html += `</div>`;
@@ -2011,6 +2108,109 @@ function setModeActive(id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
 }
 
+/* ---------- UNIVERSITY MODULE EXEMPTIONS (from UniExemption.xlsx) ---------- */
+const EXEMPTIONS = [
+  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS210 Business Process Analysis & Solutioning', dips:['ADM','AE','ADE','AIR']},
+  {uni:'SMU', prog:'BSc (Information Systems)', module:'IS115 Algorithms and Programming', dips:['ADM','AE','ADE']},
+  {uni:'SMU', prog:'BSc (Software Engineering)', module:'IS115 Algorithms and Programming', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
+  {uni:'SMU', prog:'BSc (Software Engineering)', module:'SE101 Operating Systems & Networking', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
+  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS102 Programming Fundamentals II', dips:['AIR','CE','ECE','BME','SEB']},
+  {uni:'SMU', prog:'BSc (Computer Science)', module:'CS104 Mathematical Foundations of Computing', dips:['AIR','CE','ECE','BME','SEB']},
+  {uni:'NUS', prog:'Info Systems', module:'NUS IS 1', dips:['ADM','AE','ADE','AIR']},
+  {uni:'NUS', prog:'Info Systems', module:'NUS IS 2', dips:['ADM','AE','ADE']},
+  {uni:'NUS', prog:'Software Engineering', module:'NUS SE 1', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
+  {uni:'NUS', prog:'Software Engineering', module:'NUS SE2', dips:['ADM','AE','ADE','AIR','CE','ECE','BME','SEB']},
+  {uni:'NUS', prog:'Computer Science', module:'NUS CS 1', dips:['AIR','CE','ECE','BME','SEB']},
+  {uni:'NUS', prog:'Computer Science', module:'NUS CS2', dips:['AIR','CE','ECE','BME','SEB']}
+];
+const EXEM_DIPS = ['ADM','AE','ADE','AIR','CE','ECE','BME','SEB'];
+const EXEM_UNIS = [...new Set(EXEMPTIONS.map(e=>e.uni))];
+let EXEM_MODE = 'diploma';   // 'diploma' | 'uni'
+let EXEM_SELECTED = null;
+
+function setExemMode(mode){
+  if(EXEM_MODE === mode) return;
+  EXEM_MODE = mode;
+  EXEM_SELECTED = null;
+  repaintExem();
+}
+
+function selectExemFilter(v){
+  EXEM_SELECTED = (EXEM_SELECTED === v) ? null : v;
+  repaintExem();
+}
+
+function repaintExem(){
+  const box = document.getElementById('exemBox');
+  if(box) box.innerHTML = exemInnerHtml();
+}
+
+function exemChipsHtml(){
+  const values = EXEM_MODE === 'diploma' ? EXEM_DIPS : EXEM_UNIS;
+  return values.map(v=>{
+    const sel = EXEM_SELECTED === v ? 'selected' : '';
+    return `<button class="exem-chip ${sel}" onclick="selectExemFilter('${v}')">${v}</button>`;
+  }).join('');
+}
+
+function exemListHtml(){
+  let rows = EXEMPTIONS;
+  if(EXEM_SELECTED){
+    rows = EXEM_MODE === 'diploma'
+      ? EXEMPTIONS.filter(e => e.dips.indexOf(EXEM_SELECTED) !== -1)
+      : EXEMPTIONS.filter(e => e.uni === EXEM_SELECTED);
+  }
+  if(!rows.length){
+    return `<div class="exem-none">No exemption modules listed for ${EXEM_SELECTED} yet.</div>`;
+  }
+  // group: uni -> prog -> modules
+  const tree = {};
+  rows.forEach(e=>{
+    tree[e.uni] = tree[e.uni] || {};
+    (tree[e.uni][e.prog] = tree[e.uni][e.prog] || []).push(e);
+  });
+  // when filtering by diploma, hide the per-module diploma chips (redundant);
+  // when browsing by uni (or unfiltered), show them so students see who qualifies
+  const showChips = !(EXEM_MODE === 'diploma' && EXEM_SELECTED);
+  return Object.keys(tree).map(uni=>{
+    const progs = Object.keys(tree[uni]).map(prog=>{
+      const mods = tree[uni][prog].map(e=>{
+        const chips = showChips
+          ? `<span class="exem-dip-chips">${e.dips.map(d=>`<span class="exem-mini">${d}</span>`).join('')}</span>`
+          : '';
+        return `<li>${e.module}${chips}</li>`;
+      }).join('');
+      return `<div class="exem-prog"><div class="exem-prog-name">${prog}</div><ul class="exem-mods">${mods}</ul></div>`;
+    }).join('');
+    return `<div class="exem-uni"><div class="exem-uni-name">${uni}</div>${progs}</div>`;
+  }).join('');
+}
+
+function exemInnerHtml(){
+  const dipSel = EXEM_MODE==='diploma' ? 'selected' : '';
+  const uniSel = EXEM_MODE==='uni' ? 'selected' : '';
+  const hint = EXEM_MODE==='diploma'
+    ? 'Select your diploma to see which modules you may be exempted from. Tap again to show all.'
+    : 'Select a university to see its exemptible modules. Tap again to show all.';
+  return `
+    <div class="exem-mode-row">
+      <button class="exem-mode-btn ${dipSel}" onclick="setExemMode('diploma')">By Diploma</button>
+      <button class="exem-mode-btn ${uniSel}" onclick="setExemMode('uni')">By University</button>
+    </div>
+    <p class="upp-sub-desc">${hint}</p>
+    <div class="exem-chips">${exemChipsHtml()}</div>
+    <div id="exemList">${exemListHtml()}</div>`;
+}
+
+function renderExemptions(){
+  EXEM_MODE = 'diploma';
+  EXEM_SELECTED = null;
+  return `<div class="upp-sub exem-sub">
+    <div class="upp-sub-name">University Module Exemptions</div>
+    <div id="exemBox">${exemInnerHtml()}</div>
+  </div>`;
+}
+
 function buildTabs(){
   const modeSelector = document.getElementById('modeSelector');
 
@@ -2020,6 +2220,13 @@ function buildTabs(){
   quizBtn.innerHTML = `<span class="mode-icon">🔍</span><span class="mode-text"><div class="mode-title">Find My Path</div><div class="mode-sub">Answer one question to get matched</div></span>`;
   quizBtn.onclick = renderQuiz;
   modeSelector.appendChild(quizBtn);
+
+  const optionsBtn = document.createElement('button');
+  optionsBtn.className = 'mode-btn';
+  optionsBtn.id = 'optionsNavBtn';
+  optionsBtn.innerHTML = `<span class="mode-icon">🎯</span><span class="mode-text"><div class="mode-title">What Are My Options?</div><div class="mode-sub">Enter your stage and cGPA</div></span>`;
+  optionsBtn.onclick = renderOptionsChecker;
+  modeSelector.appendChild(optionsBtn);
 
   const stageBtn = document.createElement('button');
   stageBtn.className = 'mode-btn';
@@ -2034,13 +2241,6 @@ function buildTabs(){
   timelineBtn.innerHTML = `<span class="mode-icon">🗓️</span><span class="mode-text"><div class="mode-title">By Stage Timeline</div><div class="mode-sub">See every pathway at one P-stage</div></span>`;
   timelineBtn.onclick = ()=>renderStageTimeline(1);
   modeSelector.appendChild(timelineBtn);
-
-  const optionsBtn = document.createElement('button');
-  optionsBtn.className = 'mode-btn';
-  optionsBtn.id = 'optionsNavBtn';
-  optionsBtn.innerHTML = `<span class="mode-icon">🎯</span><span class="mode-text"><div class="mode-title">What Are My Options?</div><div class="mode-sub">Enter your stage and cGPA</div></span>`;
-  optionsBtn.onclick = renderOptionsChecker;
-  modeSelector.appendChild(optionsBtn);
 
   const nav = document.getElementById('tabs');
   PATHWAYS.forEach((p,i)=>{
